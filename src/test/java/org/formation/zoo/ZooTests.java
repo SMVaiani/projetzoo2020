@@ -40,7 +40,7 @@ class ZooTests {
 	void testNourrir() {
 		// On récupére l'adresse de l'objet Singe
 		Animal a = Manager.getInstance().getLesCages().get(0).getOccupant();
-		a.dormir();
+		a.dormir(); // Pour éviter le dépassement de la LIMITE du poids
 		a.dormir();
 		double p = a.getPoids();
 		assertEquals(p, a.getPoids());

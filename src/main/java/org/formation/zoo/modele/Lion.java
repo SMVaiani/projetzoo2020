@@ -72,8 +72,5 @@ public final class Lion extends Animal {
 	{
 		setPoids(getPoids()-0.7);
 	}
-
 	
-	
-
 }
