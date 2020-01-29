@@ -2,8 +2,8 @@ package org.formation.zoo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.formation.zoo.modele.Gazelle;
-import org.formation.zoo.modele.Lion;
+import org.formation.zoo.modele.metier.Gazelle;
+import org.formation.zoo.modele.metier.Lion;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

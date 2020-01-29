@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Vector;
 
 import org.formation.zoo.controleur.Manager;
-import org.formation.zoo.modele.*;
+import org.formation.zoo.modele.metier.*;
 import org.formation.zoo.modele.technique.BeurkException;
 import org.formation.zoo.modele.technique.CagePleineException;
 import org.formation.zoo.modele.technique.PorteException;
