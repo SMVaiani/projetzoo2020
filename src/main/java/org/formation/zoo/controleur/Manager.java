@@ -62,12 +62,12 @@ public final class Manager {
 	 */
 	public void nourrir ()
 	{
-		for (int i = 0; i < lesCages.size(); i++) {
-			if (lesCages.get(i).getOccupant() != null)
+		lesCages.stream().forEach(e->{
+			if (e.getOccupant() != null)
 			{
-				lesCages.get(i).getOccupant().manger();
+				e.getOccupant().manger();
 			}
-		}
+		});
 	}
 	/**
 	 * 
