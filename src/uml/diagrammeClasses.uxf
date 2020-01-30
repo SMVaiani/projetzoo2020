@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>270</x>
+      <y>100</y>
+      <w>200</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>Cage
+--
+-occupant : Animal
+-x:int
+-y:int
+ouvert : boolean
+--
++entrer(a:Animal)
++sortir() : Animal
++ouvrir()
++fermer()
++isOuvert() : boolean
++toString : String
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>240</y>
+      <w>230</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>FichierAccess
+--
+-fichier : String
+-elts : List&lt;Cage&gt;
+--
++FichierAccess(f:String)
+-write()
+-read()
+-init()
++lireTous() : List&lt;Cage&gt;
++ecrireTous(lesCages:List&lt;Cage&gt;)
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>110</x>
+      <y>10</y>
+      <w>120</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Zoo
+--
+
+--
++afficher()
++nourrir()
++devorer() : String
++fermer()
+bg=cyan</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>560</x>
+      <y>220</y>
+      <w>200</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>/Animal/
+--
+-nom : String
+-age : int
+-poids : double
+-LIMITE : double
+--
++grandir()
++toString() : String
++getInfos() : String
++crier() : String
++sauter()
++courir
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>540</x>
+      <y>20</y>
+      <w>190</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>/Individu/
+--
+
+--
++manger()
++crier() : String
++manger(m:Mangeable) : String
++sauter()
++courir()
++dormir()
++getInfos() : String
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>830</x>
+      <y>270</y>
+      <w>160</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>Gazelle
+--
+_serialVersionUID=1L : long_
+-lgCornes : int
+--
++manger()
++courir()
++dormir()
++finalize()
++toString : String
++prelever() : double
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>810</x>
+      <y>40</y>
+      <w>160</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Mangeable
+--
+
+--
++prelever() : double
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>70</x>
+      <y>60</y>
+      <w>60</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>40.0;10.0;10.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>220</x>
+      <y>60</y>
+      <w>190</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=0..n</panel_attributes>
+    <additional_attributes>10.0;10.0;150.0;10.0;150.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>460</x>
+      <y>170</y>
+      <w>120</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m2=0..1</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>890</x>
+      <y>130</y>
+      <w>30</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>640</x>
+      <y>170</y>
+      <w>30</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>310</x>
+      <y>450</y>
+      <w>190</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Singe
+--
+_serialVersionUID=1L : long_
+--
++manger()
++courir()
++dormir()
++sauter()
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>580</x>
+      <y>430</y>
+      <w>180</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Lion
+--
+_serialVersionUID=1L : long_
+--
++manger()
++manger(m:Mangeable) : String
++crier() : String
++dormir()
++sauter()
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>750</x>
+      <y>270</y>
+      <w>100</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>660</x>
+      <y>370</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>490</x>
+      <y>370</y>
+      <w>160</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>70</x>
+      <y>490</y>
+      <w>140</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>LIMITE: poids max
+possible de l'animal
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>200</x>
+      <y>290</y>
+      <w>380</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>360.0;10.0;10.0;200.0</additional_attributes>
+  </element>
+</diagram>
