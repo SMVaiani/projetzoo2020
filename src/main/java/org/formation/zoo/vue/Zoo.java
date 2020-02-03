@@ -20,20 +20,15 @@ public final class Zoo {
 	public Zoo() {
 		Manager.getInstance();
 	}
-	/**
-	 * Méthode privée qui charge le modèle.
-	 * Pour l'instant elle instancie les animaux
-	 */
-	@Deprecated
-	private void init()
-	{
-		
-	}
+	
 	public void afficher()
 	{
-		Manager.getInstance().getLesCages().stream().forEach(e->{
-			System.out.println(e);
+		Manager.getInstance().afficher().forEach(e->{
+			System.out.println(e.toString());
 		});
+		
+		//ArrayStoreException.asLManager.getInstance().afficher().
+		//stream().forEach(System.out::println);
 	}
 	/**
 	 * Permet de nourrir tous les animaux du zoo
@@ -48,9 +43,9 @@ public final class Zoo {
 	 * @param mange indice de la cage de la proie
 	 * @return le texte sur ce qu'il s'est passé
 	 */
-	public String devorer(int mangeur, int mange)
+	public void devorer(int mangeur, int mange)
 	{
-		return Manager.getInstance().devorer(mangeur, mange);
+		System.out.println( Manager.getInstance().devorer(mangeur, mange));
 	}
 	
 	public void fermer() {
@@ -66,7 +61,7 @@ public final class Zoo {
 		z.nourrir();
 		z.afficher();
 		System.out.println("on tente de faire manger un animal par un autre");
-		System.out.println(z.devorer(1,0));
+		z.devorer(1,0);
 		z.afficher();
 		System.out.println("on ferme le zoo");
 		z.fermer();

@@ -1,5 +1,6 @@
 package org.formation.zoo.controleur;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.formation.zoo.modele.metier.Animal;
@@ -21,7 +22,7 @@ public final class Manager {
 	 * Vecteur de Cages. C'est la COMPOSITION.
 	 */
 	private List<Cage> lesCages;
-	private FichierAccess acces;
+	private FichierAccess<Cage> acces;
 	/**
 	 * pour SINGLETON et une FACADE
 	 */
@@ -52,7 +53,7 @@ public final class Manager {
 	{
 		lesCages = acces.lireTous();
 	}
-	
+	@Deprecated
 	public List<Cage> getLesCages()
 	{
 		return lesCages;
@@ -85,7 +86,6 @@ public final class Manager {
 				try {
 					laBeteConvoitee = (Mangeable)lesCages.get(mange).sortir();
 				} catch (PorteException e2) {
-					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}
 				try
@@ -98,10 +98,8 @@ public final class Manager {
 					try {
 						lesCages.get(mange).entrer((Animal)laBeteConvoitee);
 					} catch (PorteException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (CagePleineException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					lesCages.get(mange).fermer();
@@ -112,5 +110,19 @@ public final class Manager {
 	
 	public void fermer() {
 		acces.ecrireTous(lesCages);
+	}
+	
+	public List<String> afficher() {
+		List<String> infosAnimaux = new ArrayList<String>();
+		lesCages.stream().forEach(e->{
+			infosAnimaux.add(e.toString());
+		});
+		return infosAnimaux;
+		 
+		/*String ret[];
+		 ret = new String[lesCages.size()];
+		 for (int i = 0; i < lesCages.size(); i++){
+		 ret[i] = lesCages.get(i).toString();*/
+		 
 	}
 }
