@@ -9,7 +9,10 @@ import org.formation.zoo.modele.metier.Mangeable;
 import org.formation.zoo.modele.technique.BeurkException;
 import org.formation.zoo.modele.technique.CagePleineException;
 import org.formation.zoo.modele.technique.PorteException;
+import org.formation.zoo.service.CagePOJO;
+import org.formation.zoo.stockage.Dao;
 import org.formation.zoo.stockage.FichierAccess;
+import org.formation.zoo.utilitaires.Conversion;
 
 /**
  * SINGLETON et une FACADE
@@ -22,7 +25,7 @@ public final class Manager {
 	 * Vecteur de Cages. C'est la COMPOSITION.
 	 */
 	private List<Cage> lesCages;
-	private FichierAccess<Cage> acces;
+	private Dao acces;
 	/**
 	 * pour SINGLETON et une FACADE
 	 */
@@ -50,8 +53,11 @@ public final class Manager {
 	 * Pour l'instant elle instancie les animaux
 	 */
 	private void init()
-	{
+	{ List<CagePOJO> tmp = null;
 		lesCages = acces.lireTous();
+		for(CagePOJO cagePOJO : tmp) {
+			lesCages.add(Conversion.pojoToCage(cagePOJO));
+		}
 	}
 	@Deprecated
 	public List<Cage> getLesCages()
@@ -109,15 +115,19 @@ public final class Manager {
 	}
 	
 	public void fermer() {
+		
 		acces.ecrireTous(lesCages);
 	}
-	
+	/**
+	 * FACADE
+	 * @return infos cage et animaux
+	 */
 	public List<String> afficher() {
-		List<String> infosAnimaux = new ArrayList<String>();
+		List<String> infosCageAnimaux = new ArrayList<String>();
 		lesCages.stream().forEach(e->{
-			infosAnimaux.add(e.toString());
+			infosCageAnimaux.add(e.toString());
 		});
-		return infosAnimaux;
+		return infosCageAnimaux;
 		 
 		/*String ret[];
 		 ret = new String[lesCages.size()];

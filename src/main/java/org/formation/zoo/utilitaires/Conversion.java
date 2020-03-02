@@ -38,8 +38,8 @@ public final class Conversion {
 				lesValeurs[0] = cp.getNom();
 				lesValeurs[1] = cp.getAge();
 				lesValeurs[2] = cp.getPoids();
-				construct = laClassDeLaBete.getConstructor(lesTypes);
-				bete = (Animal) construct.newInstance(lesValeurs);
+				construct = laClassDeLaBete.getConstructor(lesTypes); // retournent le tableau des constructeurs de cette classes
+				bete = (Animal) construct.newInstance(lesValeurs);	  // créé une nouvelle instance de Animal
 				ret.ouvrir();
 				ret.entrer(bete);
 				ret.fermer();
