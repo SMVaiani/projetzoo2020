@@ -47,6 +47,35 @@ public class DaoMemoire implements Dao<CagePOJO> {
 		tmp.setY(654);
 		tmp.setCle(1);
 		elts.add(tmp);
+		tmp = new CagePOJO();
+		tmp.setX(666);
+		tmp.setY(999);
+		tmp.setCle(2);
+		elts.add(tmp);
+	}
+
+	@Override
+	public void modifier(int cle, CagePOJO obj) {
+		elts.set(cle, obj);
+		
+	}
+
+	@Override
+	public void effacer(int cle) {
+		elts.remove(cle);
+		
+	}
+
+	@Override
+	public void effacer(CagePOJO obj) {
+		elts.remove(obj);
+		
+	}
+
+	@Override
+	public void ajouter(CagePOJO obj) {
+		elts.add(obj);
+		
 	}
 
 }

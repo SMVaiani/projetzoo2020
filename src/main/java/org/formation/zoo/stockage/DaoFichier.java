@@ -16,4 +16,28 @@ public class DaoFichier<T> implements Dao<T> {
 		
 	}
 
+	@Override
+	public void modifier(int cle, T obj) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void effacer(int cle) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void effacer(T obj) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void ajouter(T obj) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

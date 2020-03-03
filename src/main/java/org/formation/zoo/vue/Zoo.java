@@ -18,7 +18,7 @@ import org.formation.zoo.stockage.FichierAccess;
  */
 public final class Zoo {
 	public Zoo() {
-		Manager.getInstance();
+		//Manager.getInstance();
 	}
 	
 	public void afficher()
@@ -43,14 +43,14 @@ public final class Zoo {
 	 * @param mange indice de la cage de la proie
 	 * @return le texte sur ce qu'il s'est passé
 	 */
-	public void devorer(int mangeur, int mange)
+	/*public void devorer(int mangeur, int mange)
 	{
 		System.out.println( Manager.getInstance().devorer(mangeur, mange));
-	}
+	}*/
 	
-	public void fermer() {
+	/*public void fermer() {
 		Manager.getInstance().fermer();
-	}
+	}*/
 	
 	public static void main(String[] args) {
 		Zoo z = null;
@@ -60,11 +60,11 @@ public final class Zoo {
 		System.out.println("on fait manger tous les animaux");
 		z.nourrir();
 		z.afficher();
-		System.out.println("on tente de faire manger un animal par un autre");
-		z.devorer(1,0);
-		z.afficher();
+		//System.out.println("on tente de faire manger un animal par un autre");
+		//z.devorer(1,0);
+		//z.afficher();
 		System.out.println("on ferme le zoo");
-		z.fermer();
+		//z.fermer();
 	}
 
 }

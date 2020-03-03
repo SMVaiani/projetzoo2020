@@ -33,5 +33,9 @@ public class GazellePOJO implements Serializable {
 	public void setLgCornes(int lgCornes) {
 		this.lgCornes = lgCornes;
 	}
+	@Override
+	public String toString() {
+		return "GazellePOJO [id=" + id + ", idAnimal=" + idAnimal + ", lgCornes=" + lgCornes + "]";
+	}
 	
 }

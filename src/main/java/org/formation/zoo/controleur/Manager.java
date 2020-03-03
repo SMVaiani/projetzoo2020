@@ -7,10 +7,12 @@ import org.formation.zoo.modele.metier.Animal;
 import org.formation.zoo.modele.metier.Cage;
 import org.formation.zoo.modele.metier.Mangeable;
 import org.formation.zoo.modele.technique.BeurkException;
+import org.formation.zoo.modele.technique.CageManagee;
 import org.formation.zoo.modele.technique.CagePleineException;
 import org.formation.zoo.modele.technique.PorteException;
 import org.formation.zoo.service.CagePOJO;
 import org.formation.zoo.stockage.Dao;
+import org.formation.zoo.stockage.DaoFactory;
 import org.formation.zoo.stockage.FichierAccess;
 import org.formation.zoo.utilitaires.Conversion;
 
@@ -24,7 +26,7 @@ public final class Manager {
 	/**
 	 * Vecteur de Cages. C'est la COMPOSITION.
 	 */
-	private List<Cage> lesCages;
+	private List<CageManagee> lesCages;
 	private Dao acces;
 	/**
 	 * pour SINGLETON et une FACADE
@@ -36,7 +38,7 @@ public final class Manager {
 	 */
 	private Manager() {
 		lesCages = null;
-		acces = new FichierAccess("zoo.data");
+		acces = DaoFactory.getInstance().getDao();
 		init();
 	}
 	/**
@@ -44,8 +46,9 @@ public final class Manager {
 	 * @return l'instance unique du singleton
 	 */
 	public static Manager getInstance() {
-		if (instance == null)
+		if (instance == null) {
 			instance = new Manager();
+		}
 		return instance;
 	}
 	/**
@@ -53,28 +56,23 @@ public final class Manager {
 	 * Pour l'instant elle instancie les animaux
 	 */
 	private void init()
-	{ List<CagePOJO> tmp = null;
-		lesCages = acces.lireTous();
+	{
+		List<CagePOJO> tmp = null;
+		tmp = acces.lireTous();
+		lesCages = new ArrayList<CageManagee>();
 		for(CagePOJO cagePOJO : tmp) {
-			lesCages.add(Conversion.pojoToCage(cagePOJO));
+			lesCages.add(new CageManagee(cagePOJO, acces));
 		}
 	}
-	@Deprecated
-	public List<Cage> getLesCages()
-	{
-		return lesCages;
-	}
+	
 	/**
 	 * Permet de nourrir tous les animaux du zoo
 	 */
 	public void nourrir ()
 	{
-		lesCages.stream().forEach(e->{
-			if (e.getOccupant() != null)
-			{
-				e.getOccupant().manger();
-			}
-		});
+		for (CageManagee cageManagee : lesCages) {
+			cageManagee.nourrir();
+		}
 	}
 	/**
 	 * 
@@ -82,7 +80,7 @@ public final class Manager {
 	 * @param mange indice de la cage de la proie
 	 * @return le texte sur ce qu'il s'est passé
 	 */
-	public String devorer(int mangeur, int mange)
+	/*public String devorer(int mangeur, int mange)
 	{
 		Mangeable laBeteConvoitee = null;
 		String s = "INCOMPATIBLE";
@@ -112,12 +110,12 @@ public final class Manager {
 				}
 		}
 		return s;
-	}
+	}*/
 	
-	public void fermer() {
+	/*public void fermer() {
 		
 		acces.ecrireTous(lesCages);
-	}
+	}*/
 	/**
 	 * FACADE
 	 * @return infos cage et animaux
@@ -128,11 +126,5 @@ public final class Manager {
 			infosCageAnimaux.add(e.toString());
 		});
 		return infosCageAnimaux;
-		 
-		/*String ret[];
-		 ret = new String[lesCages.size()];
-		 for (int i = 0; i < lesCages.size(); i++){
-		 ret[i] = lesCages.get(i).toString();*/
-		 
 	}
 }
