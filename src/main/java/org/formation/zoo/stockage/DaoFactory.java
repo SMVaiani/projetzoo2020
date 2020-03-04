@@ -12,7 +12,8 @@ public class DaoFactory {
 	}
 	public Dao<CagePOJO> getDao(){
 		//return new FichierAccess<Cage>("zoo.data");
-		return new DaoJDBCImpl();
+		//return new DaoJDBCImpl();
+		return new DaoMemoire();
 	}
 
 }

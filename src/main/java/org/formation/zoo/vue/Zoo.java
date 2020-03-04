@@ -23,9 +23,15 @@ public final class Zoo {
 	
 	public void afficher()
 	{
-		Manager.getInstance().afficher().forEach(e->{
+		String[] infosAnimaux = Manager.getInstance().afficher();
+		for(int i=0;i<infosAnimaux.length;i++)
+		{
+			System.out.println(infosAnimaux[i].toString());
+		}
+		
+		/*Manager.getInstance().afficher().forEach(e->{
 			System.out.println(e.toString());
-		});
+		});*/
 		
 		//ArrayStoreException.asLManager.getInstance().afficher().
 		//stream().forEach(System.out::println);

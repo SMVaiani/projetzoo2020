@@ -10,6 +10,9 @@ public class CagePOJO {
 	private double poids;
 	private GazellePOJO gaz;
 	
+	private String pancarte;
+	private String image;
+	
 	public CagePOJO() {
 		x = 0;
 		y = 0;
@@ -19,6 +22,22 @@ public class CagePOJO {
 		age = 0;
 		poids = 0;
 		gaz = null;
+	}
+
+	public String getPancarte() {
+		return pancarte;
+	}
+
+	public void setPancarte(String pancarte) {
+		this.pancarte = pancarte;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public GazellePOJO getGaz() {
@@ -71,19 +90,19 @@ public class CagePOJO {
 		return y;
 	}
 
-	public Object getCodeAnimal() {
+	public String getCodeAnimal() {
 		return codeAnimal;
 	}
 
-	public Object getNom() {
+	public String getNom() {
 		return nom;
 	}
 
-	public Object getAge() {
+	public int getAge() {
 		return age;
 	}
 
-	public Object getPoids() {
+	public double getPoids() {
 		return poids;
 	}
 

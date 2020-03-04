@@ -2,6 +2,7 @@ package org.formation.zoo.controleur;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import org.formation.zoo.modele.metier.Animal;
 import org.formation.zoo.modele.metier.Cage;
@@ -120,11 +121,23 @@ public final class Manager {
 	 * FACADE
 	 * @return infos cage et animaux
 	 */
-	public List<String> afficher() {
-		List<String> infosCageAnimaux = new ArrayList<String>();
+	public String[] afficher() {
+		String[] infosCageAnimaux = new String[lesCages.size()];
+		for(int i=0; i<infosCageAnimaux.length;i++)
+			infosCageAnimaux[i] = lesCages.get(i).toString();
+		/*List<String> infosCageAnimaux = new ArrayList<String>();
 		lesCages.stream().forEach(e->{
 			infosCageAnimaux.add(e.toString());
-		});
+		});*/
 		return infosCageAnimaux;
+	}
+	
+	public List<CagePOJO> getAnimaux(){
+		List<CagePOJO> ret = null;
+		ret = new Vector<CagePOJO>();
+		for (CageManagee cm : lesCages) {
+			ret.add(cm.getVue());
+		}
+		return ret;
 	}
 }

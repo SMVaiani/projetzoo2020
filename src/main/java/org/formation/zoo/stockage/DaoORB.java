@@ -18,6 +18,7 @@ public class DaoORB {
 		try {
 			prop = new Properties();
 			charger();
+			//conn = DriverManager.getConnection(prop.getProperty("URL"),prop.getProperty("LOGIN"),prop.getProperty("PSWD"));
 			conn = DriverManager.getConnection(prop.getProperty("URL"),prop.getProperty("LOGIN"),prop.getProperty("PSWD"));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
