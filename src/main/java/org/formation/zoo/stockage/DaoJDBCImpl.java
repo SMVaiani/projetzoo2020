@@ -17,6 +17,7 @@ public class DaoJDBCImpl implements Dao<CagePOJO> {
 
 	@Override
 	public List<CagePOJO> lireTous() {
+		
 		List<CagePOJO> ret = null;
 		CagePOJO tmp = null;
 		GazellePOJO gaz = null;
@@ -60,31 +61,81 @@ public class DaoJDBCImpl implements Dao<CagePOJO> {
 
 	@Override
 	public void ecrireTous(List<CagePOJO> elts) {
-		// TODO Auto-generated method stub
 		
+		for (CagePOJO cp : elts) {
+			String req = "INSERT INTO FROM animal (codeAnimal,nom,age,poids,x,y) VALUES ('" + cp.getCodeAnimal() + "','" + cp.getNom()
+			+ "'," + cp.getAge() + "," + cp.getPoids() + "," + cp.getX() + "," + cp.getY();
+			Statement st = null;
+			try {
+				st = connecteur.getConn().createStatement();
+				st.executeUpdate(req);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 	@Override
 	public void modifier(int cle, CagePOJO obj) {
-		// TODO Auto-generated method stub
+		
+		String req = "UPDATE animal SET codeAnimal='" + obj.getCodeAnimal() + "', nom='" + obj.getNom() + "', age=" + obj.getAge()
+		+ ", poids=" + obj.getPoids() + ", x=" + obj.getX() + ", y="+ obj.getY() + " WHERE idAnimal=" + cle;
+		Statement st = null;
+		try {
+			st = connecteur.getConn().createStatement();
+			st.executeUpdate(req);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void effacer(int cle) {
-		// TODO Auto-generated method stub
+
+		String req = "DELETE FROM animal WHERE idAnimal=" + cle;
+		Statement st = null;
+		try {
+			st = connecteur.getConn().createStatement();
+			st.executeUpdate(req);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void effacer(CagePOJO obj) {
-		// TODO Auto-generated method stub
+		
+		String req = "DELETE FROM animal WHERE idAnimal=" + obj.getCle();
+		Statement st = null;
+		try {
+			st = connecteur.getConn().createStatement();
+			st.executeUpdate(req);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void ajouter(CagePOJO obj) {
-		// TODO Auto-generated method stub
+		
+		String req = "INSERT INTO FROM animal (codeAnimal,nom,age,poids,x,y) VALUES ('" + obj.getCodeAnimal() + "','" + obj.getNom()
+					+ "'," + obj.getAge() + "," + obj.getPoids() + "," + obj.getX() + "," + obj.getY();
+		Statement st = null;
+		try {
+			st = connecteur.getConn().createStatement();
+			st.executeUpdate(req);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

@@ -13,10 +13,12 @@ class ManagerTests {
 	@Test
 	void testGetAnimaux() {
 		List<CagePOJO> res = Manager.getInstance().getAnimaux();
-		assertEquals("Puanio 20 ans 75.0 kg", res.get(0).getPancarte());
-		assertEquals("cage vide", res.get(1).getPancarte());
-		assertEquals("./images/singe.gif", res.get(0).getImage());
-		assertEquals("./images/cage.gif", res.get(1).getImage());
+		double poidsGAGAG = res.get(0).getPoids();
+		assertEquals("GAGAG 5 ans " + poidsGAGAG +  " kg", res.get(0).getPancarte());
+		assertEquals("cage vide", res.get(4).getPancarte());
+		assertEquals("./images/gazelle.gif", res.get(0).getImage());
+		assertEquals("./images/cage.jpg", res.get(4).getImage());
+		
 		//FINIR LES TESTS!!!!!!!!!!!!!!!!!!!!!!
 	}
 

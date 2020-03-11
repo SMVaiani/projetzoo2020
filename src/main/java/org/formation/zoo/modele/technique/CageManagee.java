@@ -22,6 +22,7 @@ public final class CageManagee {
 			//mettre à jour le pojo
 			//modifier le pojo
 	}
+	
 	public void nourrir() {
 		controleur.nourrir();
 		if(controleur.getOccupant() != null) {
@@ -30,10 +31,12 @@ public final class CageManagee {
 		}
 		//modele.modifier(vue)
 	}
+	
 	@Override
 	public String toString() {
 		return controleur.toString();
 	}
+	
 	public CagePOJO getVue() {
 		String tmp = null;
 		if(vue.getCodeAnimal() != null) {

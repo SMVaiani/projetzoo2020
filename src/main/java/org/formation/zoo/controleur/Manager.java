@@ -117,6 +117,7 @@ public final class Manager {
 		
 		acces.ecrireTous(lesCages);
 	}*/
+	
 	/**
 	 * FACADE
 	 * @return infos cage et animaux
@@ -125,6 +126,7 @@ public final class Manager {
 		String[] infosCageAnimaux = new String[lesCages.size()];
 		for(int i=0; i<infosCageAnimaux.length;i++)
 			infosCageAnimaux[i] = lesCages.get(i).toString();
+		
 		/*List<String> infosCageAnimaux = new ArrayList<String>();
 		lesCages.stream().forEach(e->{
 			infosCageAnimaux.add(e.toString());
@@ -140,4 +142,5 @@ public final class Manager {
 		}
 		return ret;
 	}
+	
 }

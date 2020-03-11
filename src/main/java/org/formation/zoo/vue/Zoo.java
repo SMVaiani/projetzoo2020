@@ -36,6 +36,7 @@ public final class Zoo {
 		//ArrayStoreException.asLManager.getInstance().afficher().
 		//stream().forEach(System.out::println);
 	}
+	
 	/**
 	 * Permet de nourrir tous les animaux du zoo
 	 */
@@ -66,11 +67,7 @@ public final class Zoo {
 		System.out.println("on fait manger tous les animaux");
 		z.nourrir();
 		z.afficher();
-		//System.out.println("on tente de faire manger un animal par un autre");
-		//z.devorer(1,0);
-		//z.afficher();
 		System.out.println("on ferme le zoo");
-		//z.fermer();
 	}
 
 }
