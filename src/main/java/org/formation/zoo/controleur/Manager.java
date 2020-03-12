@@ -127,10 +127,6 @@ public final class Manager {
 		for(int i=0; i<infosCageAnimaux.length;i++)
 			infosCageAnimaux[i] = lesCages.get(i).toString();
 		
-		/*List<String> infosCageAnimaux = new ArrayList<String>();
-		lesCages.stream().forEach(e->{
-			infosCageAnimaux.add(e.toString());
-		});*/
 		return infosCageAnimaux;
 	}
 	

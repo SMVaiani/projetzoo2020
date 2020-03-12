@@ -21,5 +21,19 @@ class ManagerTests {
 		
 		//FINIR LES TESTS!!!!!!!!!!!!!!!!!!!!!!
 	}
+	
+	@Test
+	void testAfficher() {
+		String[] infosCageAnimaux = Manager.getInstance().afficher();
+		List<CagePOJO> res = Manager.getInstance().getAnimaux();
+		assertEquals("Cage [x=" + res.get(0).getX() + ", y=" + res.get(0).getY() + "]----Je suis un(e) " +
+		res.get(0).getCodeAnimal() + " je m'appelle " + res.get(0).getNom() + " , j'ai " + res.get(0).getAge() +
+		" ans, je pèse " + res.get(0).getPoids() + " kg, ses cornes mesurent 34 cm", infosCageAnimaux[0]);
+	}
+	
+	@Test
+	void testGetInstance() {
+		assertNotNull(Manager.getInstance());
+	}
 
 }

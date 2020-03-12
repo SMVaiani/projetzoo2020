@@ -126,8 +126,8 @@ public class DaoJDBCImpl implements Dao<CagePOJO> {
 	@Override
 	public void ajouter(CagePOJO obj) {
 		
-		String req = "INSERT INTO FROM animal (codeAnimal,nom,age,poids,x,y) VALUES ('" + obj.getCodeAnimal() + "','" + obj.getNom()
-					+ "'," + obj.getAge() + "," + obj.getPoids() + "," + obj.getX() + "," + obj.getY();
+		String req = "INSERT INTO animal (codeAnimal,nom,age,poids,x,y) VALUES ('" + obj.getCodeAnimal() + "','" + obj.getNom()
+					+ "'," + obj.getAge() + "," + obj.getPoids() + "," + obj.getX() + "," + obj.getY() + ")";
 		Statement st = null;
 		try {
 			st = connecteur.getConn().createStatement();
