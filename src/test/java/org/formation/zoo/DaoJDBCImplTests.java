@@ -25,9 +25,12 @@ class DaoJDBCImplTests {
 		
 		Dao<CagePOJO> cp = DaoFactory.getInstance().getDao();
 		cp.ajouter(obj);
+		
 		List<CagePOJO> lcp = null;
 		lcp = cp.lireTous();
 		CagePOJO cagepojoLion = lcp.get(lcp.size()-1);
+		cp.effacer(cagepojoLion);
+		
 		assertEquals("Lion", cagepojoLion.getCodeAnimal());
 		assertEquals("Pai", cagepojoLion.getNom());
 		assertEquals(12, cagepojoLion.getAge());
@@ -39,27 +42,52 @@ class DaoJDBCImplTests {
 	@Test
 	void testModifier() {
 		CagePOJO obj = null;
+		obj = new CagePOJO();
+		obj.setCodeAnimal("Lion");
+		obj.setNom("Pai");
+		obj.setAge(12);
+		obj.setPoids(152.4);
+		obj.setX(100);
+		obj.setY(350);
+		
 		Dao<CagePOJO> cp = DaoFactory.getInstance().getDao();
-		List<CagePOJO> lcp = null;
-		lcp = cp.lireTous();
-		obj = lcp.get(lcp.size()-1);
+		cp.ajouter(obj);
+		
+		List<CagePOJO> listcp = null;	
+		listcp = cp.lireTous();
+		obj = listcp.get(listcp.size()-1);
+		// modifier
 		obj.setAge(15);
 		obj.setPoids(182.3);
 		cp.modifier(obj.getCle(), obj);
 		
-		assertEquals(15, obj.getAge());
-		assertEquals(182.3, obj.getPoids());
+		listcp = cp.lireTous();
+		cp.effacer(obj);
+		
+		assertEquals(15, listcp.get(listcp.size()-1).getAge());
+		assertEquals(182.3, listcp.get(listcp.size()-1).getPoids());
 	}
 	
 	@Test
 	void testEffacerCagePojoObj() {
+		
 		CagePOJO obj = null;
+		obj = new CagePOJO();
+		obj.setCodeAnimal("Lion");
+		obj.setNom("Pai");
+		obj.setAge(12);
+		obj.setPoids(152.4);
+		obj.setX(100);
+		obj.setY(350);
+		
 		Dao<CagePOJO> cp = DaoFactory.getInstance().getDao();
+		cp.ajouter(obj);
+		
 		List<CagePOJO> lcp = null;
 		lcp = cp.lireTous();
 		int nbAnimalAvant = lcp.size();
-		obj = lcp.get(lcp.size()-1);
-		cp.effacer(obj);
+		CagePOJO cagepojoLion = lcp.get(lcp.size()-1);
+		cp.effacer(cagepojoLion);
 		
 		lcp = cp.lireTous();
 		
@@ -68,14 +96,24 @@ class DaoJDBCImplTests {
 	
 	@Test
 	void testEffacerIntCle() {
-		testAjouter();
+
 		CagePOJO obj = null;
+		obj = new CagePOJO();
+		obj.setCodeAnimal("Lion");
+		obj.setNom("Pai");
+		obj.setAge(12);
+		obj.setPoids(152.4);
+		obj.setX(100);
+		obj.setY(350);
+		
 		Dao<CagePOJO> cp = DaoFactory.getInstance().getDao();
+		cp.ajouter(obj);
+		
 		List<CagePOJO> lcp = null;
 		lcp = cp.lireTous();
 		int nbAnimalAvant = lcp.size();
-		obj = lcp.get(lcp.size()-1);
-		cp.effacer(obj.getCle());
+		CagePOJO cagepojoLion = lcp.get(lcp.size()-1);
+		cp.effacer(cagepojoLion.getCle());
 		
 		lcp = cp.lireTous();
 		
@@ -85,9 +123,9 @@ class DaoJDBCImplTests {
 	@Test
 	void testLireTous() {
 		Dao<CagePOJO> cp = DaoFactory.getInstance().getDao();
-		List<CagePOJO> lcp = null;
-		lcp = cp.lireTous();
+		List<CagePOJO> listcp = null;
+		listcp = cp.lireTous();
 		
-		assertNotNull(lcp);
+		assertNotNull(listcp);
 	}
 }
