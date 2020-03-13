@@ -12,14 +12,16 @@ import org.junit.jupiter.api.Test;
 
 class ManagerTests {
 
-	/*@Test
+	@Test
 	void testGetAnimaux() {
 		List<CagePOJO> res = Manager.getInstance().getAnimaux();
 		double poidsGAGAG = res.get(0).getPoids();
+		
+		assertNotNull(res);
 		assertEquals("GAGAG 5 ans " + poidsGAGAG +  " kg", res.get(0).getPancarte());
-		assertEquals("cage vide", res.get(4).getPancarte());
 		assertEquals("./images/gazelle.gif", res.get(0).getImage());
-		assertEquals("./images/cage.jpg", res.get(4).getImage());
+		assertEquals("cage vide", res.get(4).getPancarte());
+		assertEquals("./images/cage.jpg", res.get(4).getImage());		
 		
 		//FINIR LES TESTS!!!!!!!!!!!!!!!!!!!!!!
 	}
@@ -37,33 +39,17 @@ class ManagerTests {
 	void testGetInstance() {
 		assertNotNull(Manager.getInstance());
 	}
-	*/
+	
 	@Test
 	void testNourir(){
-		CagePOJO obj = null;
-		obj = new CagePOJO();
-		obj.setCodeAnimal("Lion");
-		obj.setNom("Pai");
-		obj.setAge(12);
-		obj.setPoids(152.4);
-		obj.setX(100);
-		obj.setY(350);
 		
-		Dao<CagePOJO> cp = DaoFactory.getInstance().getDao();
-		cp.ajouter(obj);
-		
-		List<CagePOJO> listcp = null;
-		listcp = cp.lireTous();
-		
-		//Avant
-		assertEquals(152.4, listcp.get(listcp.size()-1).getPoids());
-		//Aprés
+		Dao<CagePOJO> cp = DaoFactory.getInstance().getDao();	
+		List<CagePOJO> lcp = null;
+		lcp = cp.lireTous();
+		double poids = lcp.get(0).getPoids()+0.8;
 		Manager.getInstance().nourrir();
-		listcp = cp.lireTous();
-		assertEquals(154.5, listcp.get(listcp.size()-1).getPoids());
-		
-		CagePOJO cagepojoLion = listcp.get(listcp.size()-1);
-		cp.effacer(cagepojoLion);
+		lcp = cp.lireTous();
+		assertEquals(poids, lcp.get(0).getPoids());
 	}
 
 }
