@@ -1,6 +1,5 @@
 package org.formation.zoo.stockage;
 
-import org.formation.zoo.modele.metier.Cage;
 import org.formation.zoo.service.CagePOJO;
 
 public class DaoFactory {
@@ -11,9 +10,9 @@ public class DaoFactory {
 		return instance;
 	}
 	public Dao<CagePOJO> getDao(){
-		//return new FichierAccess<Cage>("zoo.data");
+//		return new FichierAccess<Cage>("zoo.data");
 		return new DaoJDBCImpl();
-		//return new DaoMemoire();
+//		return new DaoMemoire();
 	}
 
 }

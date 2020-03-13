@@ -87,8 +87,7 @@ class DaoJDBCImplTests {
 		lcp = cp.lireTous();
 		int nbAnimalAvant = lcp.size();
 		CagePOJO cagepojoLion = lcp.get(lcp.size()-1);
-		cp.effacer(cagepojoLion);
-		
+		cp.effacer(cagepojoLion);	
 		lcp = cp.lireTous();
 		
 		assertEquals(nbAnimalAvant-1, lcp.size());
