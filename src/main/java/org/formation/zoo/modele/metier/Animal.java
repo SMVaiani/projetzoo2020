@@ -16,7 +16,7 @@ public abstract class Animal implements Individu {
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * nom d'un animal
+	 * nom de l'animal
 	 */
 	private String nom;
 	/**

@@ -4,14 +4,12 @@ import java.io.Serializable;
 
 public class GazellePOJO implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private int id;
 	private int idAnimal;
 	private int lgCornes;
+	
 	public GazellePOJO() {
 		
 	}
@@ -27,6 +25,10 @@ public class GazellePOJO implements Serializable {
 	public void setIdAnimal(int idAnimal) {
 		this.idAnimal = idAnimal;
 	}
+	/**
+	 * 
+	 * @return longueur corne gazelle
+	 */
 	public int getLgCornes() {
 		return lgCornes;
 	}

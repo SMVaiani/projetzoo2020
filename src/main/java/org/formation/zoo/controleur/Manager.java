@@ -29,7 +29,10 @@ public final class Manager {
 	 * Vecteur de Cages. C'est la COMPOSITION.
 	 */
 	private List<CageManagee> lesCages;
-	private Dao acces;
+	/**
+	 * instance du dao choisi
+	 */
+	private Dao<CagePOJO> acces;
 	/**
 	 * pour SINGLETON et une FACADE
 	 */
@@ -68,7 +71,7 @@ public final class Manager {
 	}
 	
 	/**
-	 * Permet de nourrir tous les animaux du zoo
+	 * nourris tous les animaux du zoo
 	 */
 	public void nourrir ()
 	{
@@ -130,7 +133,10 @@ public final class Manager {
 		
 		return infosCageAnimaux;
 	}
-	
+	/**
+	 * 
+	 * @return une liste animaux
+	 */
 	public List<CagePOJO> getAnimaux(){
 		List<CagePOJO> ret = null;
 		ret = new Vector<CagePOJO>();

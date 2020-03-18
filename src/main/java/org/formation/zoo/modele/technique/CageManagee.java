@@ -7,8 +7,17 @@ import org.formation.zoo.stockage.Dao;
 import org.formation.zoo.utilitaires.Conversion;
 
 public final class CageManagee {
+	/**
+	 * chemin de l'image
+	 */
 	private final static String IMAGES="./images/";
+	/**
+	 * attribut de type Cage
+	 */
 	private Cage controleur;
+	/**
+	 * attribut de type CagePOJO
+	 */
 	private CagePOJO vue;
 	private Dao<CagePOJO> modele;
 	
@@ -36,7 +45,10 @@ public final class CageManagee {
 	public String toString() {
 		return controleur.toString();
 	}
-	
+	/**
+	 * 
+	 * @return l'instance de CagePOJO
+	 */
 	public CagePOJO getVue() {
 		String tmp = null;
 		if(vue.getCodeAnimal() != null) {

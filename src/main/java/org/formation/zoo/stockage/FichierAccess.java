@@ -90,10 +90,11 @@ public class FichierAccess<T> implements Dao<T>{
 		}
 		return elts;
 	}
+
 	/**
-	 * mÃ©thode qui permet l'accÃ¨s en Ã©criture Ã  l'information (fait partie de l'api)
-	 * @param lesCages la collection Ã  persister
-	 */
+	 * méthode qui permet l'accès en écriture à  l'information (fait partie de l'api)
+	 * @param elts lesCages dela collection à persister
+	 * */
 	@Override
 	public void ecrireTous(List<T> elts) {
 		this.elts = elts;

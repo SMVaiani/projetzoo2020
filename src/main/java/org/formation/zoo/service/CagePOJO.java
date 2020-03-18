@@ -1,16 +1,45 @@
 package org.formation.zoo.service;
 
 public class CagePOJO {
+	/**
+	 * Abscisse
+	 */
 	private int x;
+	/**
+	 * Ordonnée
+	 */
 	private int y;
+	/**
+	 * identifiant de l'animal
+	 */
 	private int cle;
-	private String codeAnimal; // type de l'animal
+	/**
+	 * type de l'animal
+	 */
+	private String codeAnimal;
+	/**
+	 * nom de l'animal
+	 */
 	private String nom;
+	/**
+	 * age de l'animal
+	 */
 	private int age;
+	/**
+	 * poids de l'animal
+	 */
 	private double poids;
+	/**
+	 * instance de gazellePOJO
+	 */
 	private GazellePOJO gaz;
-	
+	/**
+	 * Identité animal
+	 */
 	private String pancarte;
+	/**
+	 * Image correspondant à chaque animal
+	 */
 	private String image;
 	
 	public CagePOJO() {
@@ -24,10 +53,18 @@ public class CagePOJO {
 		gaz = null;
 	}
 
+	/**
+	 * 
+	 * @return infos animal
+	 */
 	public String getPancarte() {
 		return pancarte;
 	}
 
+	/**
+	 * 
+	 * @param pancarte modifier infos animal
+	 */
 	public void setPancarte(String pancarte) {
 		this.pancarte = pancarte;
 	}
@@ -90,6 +127,10 @@ public class CagePOJO {
 		return y;
 	}
 
+	/**
+	 * 
+	 * @return type de l'animal
+	 */
 	public String getCodeAnimal() {
 		return codeAnimal;
 	}
@@ -112,6 +153,10 @@ public class CagePOJO {
 				+ ", age=" + age + ", poids=" + poids + "]" + gaz;
 	}
 
+	/**
+	 * 
+	 * @return identifiant de l'animal
+	 */
 	public int getCle() {
 		return cle;
 	}
