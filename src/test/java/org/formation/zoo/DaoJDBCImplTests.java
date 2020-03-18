@@ -8,6 +8,7 @@ import java.util.List;
 import org.formation.zoo.service.CagePOJO;
 import org.formation.zoo.stockage.Dao;
 import org.formation.zoo.stockage.DaoFactory;
+import org.formation.zoo.stockage.TypeDao;
 import org.junit.jupiter.api.Test;
 
 class DaoJDBCImplTests {
@@ -23,7 +24,7 @@ class DaoJDBCImplTests {
 		obj.setX(100);
 		obj.setY(350);
 		
-		Dao<CagePOJO> cp = DaoFactory.getInstance().getDao();
+		Dao<CagePOJO> cp = DaoFactory.getInstance().getDao(TypeDao.DAOJDBCIMPL);
 		cp.ajouter(obj);
 		
 		List<CagePOJO> lcp = null;
@@ -50,7 +51,7 @@ class DaoJDBCImplTests {
 		obj.setX(100);
 		obj.setY(350);
 		
-		Dao<CagePOJO> cp = DaoFactory.getInstance().getDao();
+		Dao<CagePOJO> cp = DaoFactory.getInstance().getDao(TypeDao.DAOJDBCIMPL);
 		cp.ajouter(obj);
 		
 		List<CagePOJO> listcp = null;	
@@ -80,7 +81,7 @@ class DaoJDBCImplTests {
 		obj.setX(100);
 		obj.setY(350);
 		
-		Dao<CagePOJO> cp = DaoFactory.getInstance().getDao();
+		Dao<CagePOJO> cp = DaoFactory.getInstance().getDao(TypeDao.DAOJDBCIMPL);
 		cp.ajouter(obj);
 		
 		List<CagePOJO> lcp = null;
@@ -105,7 +106,7 @@ class DaoJDBCImplTests {
 		obj.setX(100);
 		obj.setY(350);
 		
-		Dao<CagePOJO> cp = DaoFactory.getInstance().getDao();
+		Dao<CagePOJO> cp = DaoFactory.getInstance().getDao(TypeDao.DAOJDBCIMPL);
 		cp.ajouter(obj);
 		
 		List<CagePOJO> lcp = null;
@@ -121,7 +122,7 @@ class DaoJDBCImplTests {
 	
 	@Test
 	void testLireTous() {
-		Dao<CagePOJO> cp = DaoFactory.getInstance().getDao();
+		Dao<CagePOJO> cp = DaoFactory.getInstance().getDao(TypeDao.DAOJDBCIMPL);
 		List<CagePOJO> listcp = null;
 		listcp = cp.lireTous();
 		

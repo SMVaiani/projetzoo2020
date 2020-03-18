@@ -8,6 +8,7 @@ import org.formation.zoo.controleur.Manager;
 import org.formation.zoo.service.CagePOJO;
 import org.formation.zoo.stockage.Dao;
 import org.formation.zoo.stockage.DaoFactory;
+import org.formation.zoo.stockage.TypeDao;
 import org.junit.jupiter.api.Test;
 
 class ManagerTests {
@@ -43,13 +44,13 @@ class ManagerTests {
 	@Test
 	void testNourir(){
 		
-		Dao<CagePOJO> cp = DaoFactory.getInstance().getDao();	
+		Dao<CagePOJO> cp = DaoFactory.getInstance().getDao(TypeDao.DAOJDBCIMPL);	
 		List<CagePOJO> lcp = null;
 		lcp = cp.lireTous();
-		double poids = lcp.get(0).getPoids()+0.8;
+		double poids = lcp.get(0).getPoids();
 		Manager.getInstance().nourrir();
 		lcp = cp.lireTous();
-		assertEquals(poids, lcp.get(0).getPoids());
+		assertEquals(poids+0.8, lcp.get(0).getPoids());
 	}
 
 }

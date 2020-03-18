@@ -19,7 +19,7 @@ public class DaoORB {
 			prop = new Properties();
 			charger();
 			//conn = DriverManager.getConnection(prop.getProperty("URL"),prop.getProperty("LOGIN"),prop.getProperty("PSWD"));
-			conn = DriverManager.getConnection(prop.getProperty("URL"),prop.getProperty("LOGIN"),prop.getProperty("PSWD"));
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/zoo","root","");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
