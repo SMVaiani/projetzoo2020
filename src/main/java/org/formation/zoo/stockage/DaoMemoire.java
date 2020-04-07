@@ -3,12 +3,6 @@ package org.formation.zoo.stockage;
 import java.util.List;
 import java.util.Vector;
 
-import org.formation.zoo.modele.metier.Cage;
-import org.formation.zoo.modele.metier.Gazelle;
-import org.formation.zoo.modele.metier.Lion;
-import org.formation.zoo.modele.metier.Singe;
-import org.formation.zoo.modele.technique.CagePleineException;
-import org.formation.zoo.modele.technique.PorteException;
 import org.formation.zoo.service.CagePOJO;
 
 public class DaoMemoire implements Dao<CagePOJO> {
@@ -28,9 +22,6 @@ public class DaoMemoire implements Dao<CagePOJO> {
 		// Vide volontairement
 		
 	}
-	/**
-	 * méthode privée qui rempli la liste si aucun fichier n'est trouvé
-	 */
 	private void init()
 	{
 		CagePOJO tmp = null;
@@ -38,11 +29,11 @@ public class DaoMemoire implements Dao<CagePOJO> {
 		tmp = new CagePOJO();
 		tmp.setCodeAnimal("Singe");
 		tmp.setCle(0);
-		tmp.setX(200);
-		tmp.setY(354);
+		tmp.setX(100);
+		tmp.setY(200);
 		tmp.setAge(20);
 		tmp.setPoids(75);
-		tmp.setNom("Puanio");
+		tmp.setNom("Baloo");
 		elts.add(tmp);
 		tmp = new CagePOJO();
 		tmp.setX(234);
@@ -51,9 +42,10 @@ public class DaoMemoire implements Dao<CagePOJO> {
 		elts.add(tmp);
 		tmp = new CagePOJO();
 		tmp.setX(666);
-		tmp.setY(250);
+		tmp.setY(150);
 		tmp.setCle(2);
 		elts.add(tmp);
+	
 	}
 
 	@Override
@@ -71,13 +63,17 @@ public class DaoMemoire implements Dao<CagePOJO> {
 	@Override
 	public void effacer(CagePOJO obj) {
 		elts.remove(obj);
-		
 	}
 
 	@Override
 	public void ajouter(CagePOJO obj) {
 		elts.add(obj);
+	}
+
+	@Override
+	public CagePOJO lire(int cle) {
 		
+		return elts.get(cle);
 	}
 
 }

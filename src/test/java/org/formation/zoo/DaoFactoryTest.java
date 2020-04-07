@@ -2,21 +2,25 @@ package org.formation.zoo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.formation.zoo.service.CagePOJO;
+import org.formation.zoo.stockage.Dao;
 import org.formation.zoo.stockage.DaoFactory;
-import org.formation.zoo.stockage.TypeDao;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 class DaoFactoryTest {
 
-	@Test
-	void testGetInstance() {
-		assertNotNull(DaoFactory.getInstance());
+	@BeforeAll
+	static void setUpBeforeClass() throws Exception {
 	}
 
 	@Test
 	void testGetDao() {
-		assertNotNull(DaoFactory.getInstance().getDao(TypeDao.DAOJDBCIMPL));
-		assertNotNull(DaoFactory.getInstance().getDao(TypeDao.DAOMEMOIRE));
+		Dao<CagePOJO> dao = null;
+		dao = DaoFactory.getInstance().getDao();
+		assertNotNull(dao.lireTous());
+		dao.lireTous().stream().forEach(System.out::println);
+
 	}
 
 }

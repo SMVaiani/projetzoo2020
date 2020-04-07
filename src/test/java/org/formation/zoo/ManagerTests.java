@@ -44,7 +44,7 @@ class ManagerTests {
 	@Test
 	void testNourir(){
 		
-		Dao<CagePOJO> cp = DaoFactory.getInstance().getDao(TypeDao.DAOJDBCIMPL);	
+		Dao<CagePOJO> cp = DaoFactory.getInstance().getDao();	
 		List<CagePOJO> lcp = null;
 		lcp = cp.lireTous();
 		double poids = lcp.get(0).getPoids();

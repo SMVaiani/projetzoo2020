@@ -40,4 +40,10 @@ public class DaoFichier<T> implements Dao<T> {
 		
 	}
 
+	@Override
+	public T lire(int cle) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

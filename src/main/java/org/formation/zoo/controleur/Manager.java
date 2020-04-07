@@ -43,7 +43,7 @@ public final class Manager {
 	 */
 	private Manager() {
 		lesCages = null;
-		acces = DaoFactory.getInstance().getDao(TypeDao.DAOJDBCIMPL);
+		acces = DaoFactory.getInstance().getDao();
 		init();
 	}
 	/**

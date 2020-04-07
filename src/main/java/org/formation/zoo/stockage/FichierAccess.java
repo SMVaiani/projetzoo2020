@@ -3,14 +3,8 @@ import java.io.*;
 import java.util.List;
 import java.util.Vector;
 
-import org.formation.zoo.modele.metier.Cage;
-import org.formation.zoo.modele.metier.Gazelle;
-import org.formation.zoo.modele.metier.Lion;
-import org.formation.zoo.modele.metier.Singe;
-import org.formation.zoo.modele.technique.CagePleineException;
-import org.formation.zoo.modele.technique.PorteException;
 
-/**
+/**s vD
  * Classe technique qui g√®re les acc√®s fichier pour la sauvegarde des animaux du zoo.
  * @author jacques
  *
@@ -55,29 +49,20 @@ public class FichierAccess<T> implements Dao<T>{
 	 */
 	private void read() {
 	    ObjectInputStream fic = null;
-		//File f = new File(fichier);
 		try {
 			fic= new ObjectInputStream(new FileInputStream(fichier));
 			elts = (Vector<T>)fic.readObject();
 			fic.close();
 		}
 		catch (IOException e) {
-			// fichier inexistant tout remplir ‡ la main en appelant
-			DaoMemoire dm = new DaoMemoire(); // fichier inexistant
+			//fichier inexistant tout remplir √† la main en appelant init
+			DaoMemoire dm = new DaoMemoire();
 			elts = (List<T>) dm.lireTous();
 		}
 		catch(ClassNotFoundException ex)
 		{
 			ex.printStackTrace();
 		}
-	}
-
-	public String getFichier() {
-		return fichier;
-	}
-
-	public void setFichier(String fichier) {
-		this.fichier = fichier;
 	}
 	/**
 	 * m√©thode qui permet l'acc√®s en lecture √† l'information (fait partie de l'api)
@@ -90,39 +75,46 @@ public class FichierAccess<T> implements Dao<T>{
 		}
 		return elts;
 	}
-
 	/**
-	 * mÈthode qui permet l'accËs en Ècriture ‡† l'information (fait partie de l'api)
-	 * @param elts lesCages dela collection ‡ persister
-	 * */
+	 * m√©thode qui permet l'acc√®s en √©criture √† l'information (fait partie de l'api)
+	 * @param lesCages la collection √† persister
+	 */
 	@Override
-	public void ecrireTous(List<T> elts) {
-		this.elts = elts;
+	public void ecrireTous(List<T> lesCages) {
+		if(lesCages !=null) {
+			elts = lesCages;
+		}
 		write();
 		
 	}
 
 	@Override
 	public void modifier(int cle, T obj) {
-		// TODO Auto-generated method stub
-		
+		elts.set(cle, obj);
+		ecrireTous(elts);
 	}
 
 	@Override
 	public void effacer(int cle) {
-		// TODO Auto-generated method stub
-		
+		elts.remove(cle);
+		ecrireTous(elts);
 	}
 
 	@Override
 	public void effacer(T obj) {
-		// TODO Auto-generated method stub
-		
+		elts.remove(obj);
+		ecrireTous(elts);
 	}
 
 	@Override
 	public void ajouter(T obj) {
-		// TODO Auto-generated method stub
+		elts.add(obj);
+		ecrireTous(elts);
 		
+	}
+
+	@Override
+	public T lire(int cle) {
+		return elts.get(cle);	
 	}
 }
