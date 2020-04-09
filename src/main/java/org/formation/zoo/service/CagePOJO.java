@@ -1,5 +1,11 @@
 package org.formation.zoo.service;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="animal")
+@NamedQueries({@NamedQuery(name = "findAll", query = "SELECT c FROM CagePOJO c left join GazellePOJO as g on c.idAnimal = g.idAnimal"),
+	@NamedQuery(name = "lire", query = "SELECT c FROM CagePOJO c WHERE c.id = :id")})
 public class CagePOJO {
 	private int x;
 	private int y;
