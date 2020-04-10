@@ -1,40 +1,53 @@
 package org.formation.zoo.service;
 
 import java.io.Serializable;
+import javax.persistence.*;
 
+
+/**
+ * The persistent class for the gazelle database table.
+ * 
+ */
+@Entity
+@Table(name="gazelle")
 public class GazellePOJO implements Serializable {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	private int idAnimal;
-	private int lgCornes;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idAnimal")
+	private CagePOJO idAnimal;
+
+	private double lgCornes;
+
 	public GazellePOJO() {
 	}
+
 	public int getId() {
-		return id;
+		return this.id;
 	}
-	public void setId(int id) {
+
+	public void setId(byte id) {
 		this.id = id;
 	}
-	public int getIdAnimal() {
-		return idAnimal;
+
+	public CagePOJO getIdAnimal() {
+		return this.idAnimal;
 	}
-	public void setIdAnimal(int idAnimal) {
+
+	public void setIdAnimal(CagePOJO idAnimal) {
 		this.idAnimal = idAnimal;
 	}
-	public int getLgCornes() {
-		return lgCornes;
+
+	public double getLgCornes() {
+		return this.lgCornes;
 	}
-	public void setLgCornes(int lgCornes) {
+
+	public void setLgCornes(double lgCornes) {
 		this.lgCornes = lgCornes;
-	}
-	@Override
-	public String toString() {
-		return "GazellePOJO [id=" + id + ", idAnimal=" + idAnimal + ", lgCornes=" + lgCornes + "]";
 	}
 
 }

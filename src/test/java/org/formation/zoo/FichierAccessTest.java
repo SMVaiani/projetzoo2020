@@ -18,7 +18,7 @@ class FichierAccessTest {
 	private static String fich; 
 	private static FichierAccess<CagePOJO> fAccess; 
 
-	@BeforeAll
+	/*@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		fich = "tests.data"; 
 		fAccess = new FichierAccess<>(fich); 
@@ -34,12 +34,12 @@ class FichierAccessTest {
 		daoMemoire = new DaoMemoire();
 	}
 
-	@Test 
+	//@Test 
 	/**
 	 * On teste tout dans une seule méthode 
 	 * car les accès fichiers sont séquentiels
 	 */
-	public void testsSequence() throws IOException {
+	/*public void testsSequence() throws IOException {
 		CagePOJO c = null; 
 		File f = new File(fich);
 		if(f.exists()) {
@@ -98,5 +98,5 @@ class FichierAccessTest {
 		fAccess.effacer(c);
 		assertEquals(taille-2, fAccess.lireTous().size());
 		
-	} 
+	} */
 }

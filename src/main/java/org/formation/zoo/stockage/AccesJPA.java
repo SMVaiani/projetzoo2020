@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.formation.zoo.service.CagePOJO;
+
 public class AccesJPA<T> implements Dao<T>{
 	private EntityManager em;
 
@@ -23,38 +25,54 @@ public class AccesJPA<T> implements Dao<T>{
 
 	@Override
 	public T lire(int cle) {
-		// TODO Auto-generated method stub
-		return null;
+		return (T) em.createNamedQuery("lire").setParameter("id", cle).getSingleResult();
 	}
 
 	@Override
 	public void ecrireTous(List<T> elts) {
-		// TODO Auto-generated method stub
+		// vide !!!!! car n'a pas de sens avec les bases de données
 		
 	}
 
 	@Override
 	public void modifier(int cle, T obj) {
-		// TODO Auto-generated method stub
-		
+		if(obj != null)
+		{
+			em.getTransaction().begin();
+			em.merge(obj);
+			em.getTransaction().commit();
+		}	
 	}
 
 	@Override
 	public void effacer(int cle) {
-		// TODO Auto-generated method stub
-		
+		T obj = lire(cle);
+		if(obj != null)
+		{
+			em.getTransaction().begin();
+			em.remove(obj);
+			em.getTransaction().commit();
+		}
 	}
 
 	@Override
 	public void effacer(T obj) {
-		// TODO Auto-generated method stub
-		
+		if(obj != null)
+		{
+			em.getTransaction().begin();
+			em.remove(obj);
+			em.getTransaction().commit();
+		}
 	}
 
 	@Override
 	public void ajouter(T obj) {
-		// TODO Auto-generated method stub
-		
+		if(obj != null)
+		{
+			em.getTransaction();
+			em.persist(obj);
+			em.getTransaction().commit();
+		}
 	}
 	
 }
