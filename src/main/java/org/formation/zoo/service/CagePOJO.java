@@ -10,33 +10,29 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="animal")
-@NamedQuery(name="findAll", query="SELECT c FROM CagePOJO c")
+@NamedQueries({@NamedQuery(name = "findAll", query = "SELECT cage FROM CagePOJO cage"),
+	@NamedQuery(name = "lire", query = "SELECT cage FROM CagePOJO cage WHERE cage.cle = :id")})
 public class CagePOJO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	private int x;
+	private int y;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int idAnimal;
-
-	private int age;
-
+	@Column(name = "idAnimal")
+	private int cle;
 	private String codeAnimal;
-
 	private String nom;
-
+	private int age;
 	private double poids;
-
-	private int x;
-
-	private int y;
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+	@JoinColumn(name = "idAnimal", referencedColumnName = "idAnimal", updatable = false, insertable = false)
+	private GazellePOJO gaz;
 	
 	@Transient
 	private String pancarte;
 	@Transient
 	private String image;
-	
-	@OneToOne(mappedBy = "idAnimal")
-	private GazellePOJO gaz;
 
 	public CagePOJO() {
 	}
@@ -65,12 +61,12 @@ public class CagePOJO implements Serializable {
 		this.gaz = gaz;
 	}
 
-	public int getIdAnimal() {
-		return this.idAnimal;
+	public int getCle() {
+		return this.cle;
 	}
 
-	public void setIdAnimal(int idAnimal) {
-		this.idAnimal = idAnimal;
+	public void setCle(int cle) {
+		this.cle = cle;
 	}
 
 	public int getAge() {
@@ -103,6 +99,12 @@ public class CagePOJO implements Serializable {
 
 	public void setPoids(double poids) {
 		this.poids = poids;
+	}
+	
+	@Override
+	public String toString() {
+		return "CagePOJO [x=" + x + ", y=" + y + ", cle=" + cle + ", codeAnimal=" + codeAnimal + ", nom=" + nom
+				+ ", age=" + age + ", poids=" + poids + "]" + gaz;
 	}
 
 	public int getX() {

@@ -16,13 +16,9 @@ public class GazellePOJO implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "idAnimal")
-	private CagePOJO idAnimal;
-
-	private double lgCornes;
-
+	private int idAnimal;
+	private int lgCornes;
+	
 	public GazellePOJO() {
 	}
 
@@ -30,24 +26,28 @@ public class GazellePOJO implements Serializable {
 		return this.id;
 	}
 
-	public void setId(byte id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public CagePOJO getIdAnimal() {
+	public int getIdAnimal() {
 		return this.idAnimal;
 	}
 
-	public void setIdAnimal(CagePOJO idAnimal) {
+	public void setIdAnimal(int idAnimal) {
 		this.idAnimal = idAnimal;
 	}
 
-	public double getLgCornes() {
+	public int getLgCornes() {
 		return this.lgCornes;
 	}
 
-	public void setLgCornes(double lgCornes) {
+	public void setLgCornes(int lgCornes) {
 		this.lgCornes = lgCornes;
 	}
-
+	
+	@Override
+	public String toString() {
+		return "GazellePOJO [id=" + id + ", idAnimal=" + idAnimal + ", lgCornes=" + lgCornes + "]";
+	}
 }

@@ -13,7 +13,7 @@ import org.formation.zoo.stockage.FichierAccess;
 /**
  * Programme PRINCIPAL 
  * Contient le main
- * @author j.Vincensini
+ * @author vi.samgmouit
  *
  */
 public final class Zoo {

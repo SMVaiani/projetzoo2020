@@ -6,24 +6,23 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import org.formation.zoo.service.CagePOJO;
 
 public class AccesJPA<T> implements Dao<T>{
 	private EntityManager em;
 
 	public AccesJPA() {
 		EntityManagerFactory emf = null;
+		
 		emf = Persistence.createEntityManagerFactory("projetzoo2020");
 		em = emf.createEntityManager();
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<T> lireTous() {
 		return em.createNamedQuery("findAll").getResultList();
 	}
 
-	@Override
+	@SuppressWarnings("unchecked")
 	public T lire(int cle) {
 		return (T) em.createNamedQuery("lire").setParameter("id", cle).getSingleResult();
 	}
@@ -34,7 +33,6 @@ public class AccesJPA<T> implements Dao<T>{
 		
 	}
 
-	@Override
 	public void modifier(int cle, T obj) {
 		if(obj != null)
 		{
@@ -44,7 +42,7 @@ public class AccesJPA<T> implements Dao<T>{
 		}	
 	}
 
-	@Override
+	@SuppressWarnings("unchecked")
 	public void effacer(int cle) {
 		T obj = lire(cle);
 		if(obj != null)
@@ -55,7 +53,6 @@ public class AccesJPA<T> implements Dao<T>{
 		}
 	}
 
-	@Override
 	public void effacer(T obj) {
 		if(obj != null)
 		{
@@ -65,7 +62,6 @@ public class AccesJPA<T> implements Dao<T>{
 		}
 	}
 
-	@Override
 	public void ajouter(T obj) {
 		if(obj != null)
 		{
