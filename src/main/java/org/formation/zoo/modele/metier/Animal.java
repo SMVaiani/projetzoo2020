@@ -5,7 +5,7 @@ package org.formation.zoo.modele.metier;
  * Classe abstraite de base pour le modèle.
  * Ele regroupe les principaux attributs et leurs méthodes.
  * 
- * @author J.Vincensini
+ * @author vi.samgmouit
  * @see org.formation.zoo.modele.metier.Lion
  * @version 1.0
  *

@@ -85,7 +85,7 @@ public final class Manager {
 	 * @param mange indice de la cage de la proie
 	 * @return le texte sur ce qu'il s'est passé
 	 */
-	/*public String devorer(int mangeur, int mange)
+	public String devorer(int mangeur, int mange)
 	{
 		Mangeable laBeteConvoitee = null;
 		String s = "INCOMPATIBLE";
@@ -115,7 +115,7 @@ public final class Manager {
 				}
 		}
 		return s;
-	}*/
+	}
 	
 	/*public void fermer() {
 		

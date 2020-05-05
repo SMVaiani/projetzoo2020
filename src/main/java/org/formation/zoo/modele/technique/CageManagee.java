@@ -28,8 +28,30 @@ public final class CageManagee {
 	}
 	public void entrer(Animal a) throws PorteException, CagePleineException{
 			controleur.entrer(a);
+			if(controleur.getOccupant() != null) {
+				vue.setNom(controleur.getOccupant().getNom());
+				vue.setAge(controleur.getOccupant().getAge());
+				vue.setPoids(controleur.getOccupant().getPoids());
+				vue.setCodeAnimal(controleur.getOccupant().getClass().getName());
+				vue.setX(controleur.getX());
+				vue.setY(controleur.getY());
+				modele.ajouter(vue);
+			}
 			//mettre à jour le pojo
 			//modifier le pojo
+	}
+	
+	public Animal sortir()throws PorteException
+	{
+		Animal a =  controleur.sortir();
+		if(controleur.getOccupant() == null) {
+			vue.setCodeAnimal(null);
+			vue.setNom(null);
+			vue.setAge(0);
+			vue.setPoids(0);
+			modele.modifier(vue.getCle(), vue);
+		}
+		return a;
 	}
 	
 	public void nourrir() {
@@ -39,6 +61,20 @@ public final class CageManagee {
 			modele.modifier(vue.getCle(), vue);
 		}
 		//modele.modifier(vue)
+	}
+	
+	/**/
+	public Animal getOccupant() {
+		return controleur.getOccupant();
+	}
+	
+	public void ouvrir()
+	{
+		controleur.ouvrir();
+	}
+	public void fermer()
+	{
+		controleur.fermer();
 	}
 	
 	@Override

@@ -125,6 +125,7 @@ public class Cage implements Serializable{
 	public void setOuvert(boolean ouvert) {
 		this.ouvert = ouvert;
 	}
+	
 	public void nourrir() {
 		if(getOccupant() != null) {
 			getOccupant().manger();

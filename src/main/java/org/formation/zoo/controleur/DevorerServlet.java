@@ -8,19 +8,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /** 
- * Servlet implementation class MangerServlet
+ * Servlet implementation class DevorerServlet
  */
-@WebServlet("/manger")
-public class MangerServlet extends HttpServlet {
+@WebServlet("devorer")
+public class DevorerServlet extends HttpServlet {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public MangerServlet() {
+	public DevorerServlet() {
 		super();
 	}
 
@@ -31,8 +30,9 @@ public class MangerServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Manager.getInstance().nourrir();
+		Manager.getInstance().devorer(0, 1);
 		resp.sendRedirect("/projetzoo2020");
 	}
+
 	
 }

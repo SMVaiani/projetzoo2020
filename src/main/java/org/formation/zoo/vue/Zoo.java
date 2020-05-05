@@ -50,10 +50,10 @@ public final class Zoo {
 	 * @param mange indice de la cage de la proie
 	 * @return le texte sur ce qu'il s'est passÃ©
 	 */
-	/*public void devorer(int mangeur, int mange)
+	public void devorer(int mangeur, int mange)
 	{
 		System.out.println( Manager.getInstance().devorer(mangeur, mange));
-	}*/
+	}
 	
 	/*public void fermer() {
 		Manager.getInstance().fermer();
@@ -66,6 +66,9 @@ public final class Zoo {
 		z.afficher(); 
 		System.out.println("on fait manger tous les animaux");
 		z.nourrir();
+		z.afficher();
+		System.out.println("on fait dévorer un animal");
+		z.devorer(0, 1);
 		z.afficher();
 		System.out.println("on ferme le zoo");
 	}

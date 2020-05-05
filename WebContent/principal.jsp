@@ -13,7 +13,7 @@
 <img class="logoGauche" alt="" src="images/logo.png"/>
 <img class="logoDroit" alt="" src="images/logo.png"/><p>Le zoo en folie</p>
 </header>
-<form name="fzoo" action="servlet.html" method="GET">
+<form name="fzoo" action="devorer" method="GET">
 <nav>
 <ul class="m">
 	<li class="m"><a href="manger">TOUT le monde mange (defaut)</a></li>
@@ -35,8 +35,13 @@ String texte = null;
 	out.print(texte);
 	texte = String.join("", "<img alt=\"\" src=\"",zanimaux.get(i).getImage(),"\" class=\"animal\"/>");
 	out.print(texte);
-	texte = String.join("", "<div class=\"afficheAnimal\" >",zanimaux.get(i).getPancarte(),"</div></div>");
+	texte = String.join("", "<div class=\"afficheAnimal\" >",zanimaux.get(i).getPancarte(),"</div>");
 	out.print(texte);
+	
+	texte = String.join("", "<div class=\"radio-mangeur\"><input type=\"radio\" value=\"value1\" name=\"group1\"><label for=\"mangeur\">Mangeur</label></div>");
+	out.print(texte);
+	texte = String.join("", "<div class=\"radio-mange\"><input type=\"radio\" value=\"value2\" name=\"group2\"><label for=\"mange\">Mange</label></div></div>");
+	out.print(texte);	
 }
 %>
 </article>
