@@ -20,7 +20,7 @@
 	<li class="m"><a href="#" onClick="fzoo.submit();">FAIRE manger les animaux selectionnes</a></li>
 	<li class="m"><a href="#">Ajouter un animal</a></li>
 	<li class="m">
-		<input type="text" name="nomAnimal">
+		<input type="text" name="nomAnimal" placeholder="votre choix">
 		<button id="btn_suppr">Supprimer un animal</button>
 	</li>
 </ul>

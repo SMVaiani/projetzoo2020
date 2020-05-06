@@ -1,5 +1,6 @@
 package org.formation.zoo.controleur;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -87,10 +88,39 @@ public final class Manager {
 		return lesCages.get(mangeur).devorer(lesCages.get(mange));
 	}
 	
+	public String ajouter(String codeAnimal, String nom, int age, double poids, int x, int y) {
+		String s = "";
+		for(CageManagee cm : lesCages) {
+			if(cm.getVue().getX() == x && cm.getVue().getY() == y)
+			{
+				Animal animal = null;
+				Class<?> classeAnimal;
+				try {
+					classeAnimal = Class.forName(String.join("", "org.formation.zoo.modele.metier.",codeAnimal));
+					animal = (Animal) classeAnimal.getDeclaredConstructor().newInstance();
+				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				animal.setNom(nom);
+				animal.setAge(age);
+				animal.setPoids(poids);
+				s = cm.ajouter(animal);
+			}
+		}
+		
+		return s;
+	}
+	/**
+	 * 
+	 * @param nom nom de l'animal à supprimer
+	 * @return le texte sur ce qu'il s'est passée
+	 */
 	public String supprimer(String nom) {
 		String s = "Cet animal n'existe pas";
 		for(CageManagee cm : lesCages) {
-			if(cm.getVue().getNom() != null && cm.getVue().getNom().equals(nom)) {
+			if(cm.getVue().getNom() != null && cm.getVue().getNom().equals(nom))
+			{
 				s = cm.supprimer();
 			}
 		}

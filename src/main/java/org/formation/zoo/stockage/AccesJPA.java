@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.formation.zoo.service.CagePOJO;
+
 
 public class AccesJPA<T> implements Dao<T>{
 	private EntityManager em;
@@ -57,8 +59,13 @@ public class AccesJPA<T> implements Dao<T>{
 		if(obj != null)
 		{
 			em.getTransaction().begin();
+			if(!em.contains(obj))
+			{
+				obj = em.merge(obj);
+			}
 			em.remove(obj);
 			em.getTransaction().commit();
+			em.close();
 		}
 	}
 

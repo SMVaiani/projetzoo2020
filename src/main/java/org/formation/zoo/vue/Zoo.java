@@ -21,8 +21,7 @@ public final class Zoo {
 		//Manager.getInstance();
 	}
 	
-	public void afficher()
-	{
+	public void afficher() {
 		String[] infosAnimaux = Manager.getInstance().afficher();
 		for(int i=0;i<infosAnimaux.length;i++)
 		{
@@ -40,8 +39,7 @@ public final class Zoo {
 	/**
 	 * Permet de nourrir tous les animaux du zoo
 	 */
-	public void nourrir()
-	{
+	public void nourrir() {
 		Manager.getInstance().nourrir();
 	}
 	/**
@@ -50,11 +48,17 @@ public final class Zoo {
 	 * @param mange indice de la cage de la proie
 	 * @return le texte sur ce qu'il s'est passÃ©
 	 */
-	public void devorer(int mangeur, int mange)
-	{
+	public void devorer(int mangeur, int mange) {
 		System.out.println( Manager.getInstance().devorer(mangeur, mange));
 	}
 	
+	public void ajouter(String codeAnimal, String nom, int age, double poids, int x, int y) {
+		System.out.println(Manager.getInstance().ajouter(codeAnimal, nom, age, poids, x, y));
+	}
+	/**
+	 * 
+	 * @param nom nom de l'animal à supprimer
+	 */
 	public void supprimer(String nom) {
 		System.out.println(Manager.getInstance().supprimer(nom));
 	}
@@ -67,16 +71,23 @@ public final class Zoo {
 		Zoo z = null;
 		z = new Zoo();
 					
-		z.afficher(); 
+	/*	z.afficher(); 
 		System.out.println("on fait manger tous les animaux");
 		z.nourrir();
-		z.afficher();
+		z.afficher();*/
+		
 		System.out.println("on fait dévorer un animal");
-		z.devorer(1, 2);
+		z.devorer(0, 4);
 		z.afficher();
-		System.out.println("on supprime un animal");
+		
+		/*System.out.println("on ajoute un animal");
+		z.ajouter("Lion", "Fetia", 7, 150, 700, 230);
+		z.afficher();*/
+		
+		/*System.out.println("on supprime un animal");
 		z.supprimer("Beep Beep");
-		z.afficher();
+		z.afficher();*/
+		
 		System.out.println("on ferme le zoo");
 	}
 

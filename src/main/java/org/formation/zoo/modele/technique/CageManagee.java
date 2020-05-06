@@ -2,9 +2,12 @@ package org.formation.zoo.modele.technique;
 
 import org.formation.zoo.modele.metier.Animal;
 import org.formation.zoo.modele.metier.Cage;
+import org.formation.zoo.modele.metier.Gazelle;
 import org.formation.zoo.modele.metier.Mangeable;
 import org.formation.zoo.service.CagePOJO;
+import org.formation.zoo.service.GazellePOJO;
 import org.formation.zoo.stockage.Dao;
+import org.formation.zoo.stockage.DaoFactory;
 import org.formation.zoo.utilitaires.Conversion;
 
 public final class CageManagee {
@@ -55,12 +58,22 @@ public final class CageManagee {
 	 */
 	public Animal sortir()throws PorteException {
 		Animal a = controleur.sortir();
+
 		if(controleur.getOccupant() == null) {
 			vue.setCodeAnimal(null);
 			vue.setNom(null);
 			vue.setAge(0);
 			vue.setPoids(0);
+			GazellePOJO gazPOJO = vue.getGaz();
+			vue.setGaz(null);
 			modele.modifier(vue.getCle(), vue);
+			
+			if(a instanceof Gazelle)
+			{
+				Dao<GazellePOJO> modeleGaz = DaoFactory.getInstance().getDaoGaz();
+				System.out.println("ici: " + gazPOJO.getId());
+				modeleGaz.effacer(gazPOJO);
+			}
 		}
 		return a;
 	}
@@ -88,7 +101,7 @@ public final class CageManagee {
 			try {
 				laBeteConvoitee = (Mangeable) mange.sortir();
 			} catch (PorteException e2) {
-				e2.printStackTrace();
+				s = e2.getMessage();
 			}
 			
 			s = controleur.devorer(laBeteConvoitee);
@@ -98,13 +111,13 @@ public final class CageManagee {
 					mange.entrer((Animal)laBeteConvoitee);
 				} catch (PorteException | CagePleineException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					s = e.getMessage();
 				}
 			}
 			
 			mange.fermer();
 			
-			if(s == "MIAM")
+			if(s.equals("MIAM"))
 			{
 				vue.setPoids(controleur.getOccupant().getPoids());
 				modele.modifier(vue.getCle(), vue);
@@ -113,6 +126,22 @@ public final class CageManagee {
 		
 		return s;
 	}
+	
+	public String ajouter(Animal a) {
+		String s = "Animal ajouter avec succès";
+		try {
+			entrer(a);
+		} catch (PorteException | CagePleineException e) {
+			// TODO Auto-generated catch block
+			s = e.getMessage();
+		}
+		
+		return s;
+	}
+	/**
+	 * 
+	 * @return le texte sur ce qu'il s'est passée
+	 */
 	public String supprimer() {
 		String s = "Bye Bye";
 		if(getOccupant() != null)
@@ -159,13 +188,15 @@ public final class CageManagee {
 	public CagePOJO getVue() {
 		String tmp = null;
 		if(vue.getCodeAnimal() != null) {
-			tmp = String.join(" ",vue.getNom(),Integer.toString(vue.getAge()),"ans",Double.toString(vue.getPoids()),"kg");
+			tmp = String.join(" ", vue.getNom(),Integer.toString(vue.getAge()),"ans",Double.toString(vue.getPoids()),"kg ");
+			if(vue.getCodeAnimal().equals("Gazelle"))
+				tmp += String.join(" ", Integer.toString(vue.getGaz().getLgCornes()), " cm de cornes");
 			vue.setPancarte(tmp);
 			tmp = String.join("", IMAGES, vue.getCodeAnimal().toLowerCase()+".gif");
 		}
 		else
 		{
-			vue.setPancarte("cage vide");
+			vue.setPancarte(String.join("", "cage vide [x=", Integer.toString(controleur.getX()), ", y=", Integer.toString(controleur.getY()), "]"));
 			tmp = String.join("", IMAGES, "cage.jpg");
 		}
 		vue.setImage(tmp);

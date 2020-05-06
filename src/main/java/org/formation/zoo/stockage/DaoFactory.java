@@ -39,6 +39,16 @@ public class DaoFactory {
         }
         return ret;
     }
-
+    @SuppressWarnings("unchecked")
+    public Dao<GazellePOJO> getDaoGaz(){
+        Dao<GazellePOJO> ret = null;
+        try {
+            classeDao = (Class<?>) Class.forName(String.join("", CHEMIN,properties.getProperty("dao")));
+            ret = (Dao<GazellePOJO>) classeDao.getDeclaredConstructor().newInstance();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+            logger.log(Level.INFO,e.getMessage());
+        }
+        return ret;
+    }
 }
 

@@ -13,7 +13,7 @@ public class CagePleineException extends Exception {
 	private static final long serialVersionUID = 1L;
 
 	public CagePleineException() {
-		super("La cage est d√©j√† occup√©e");
+		super("La cage est dËja† occupÈe");
 	}
 
 	public CagePleineException(String raison) {

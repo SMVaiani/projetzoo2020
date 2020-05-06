@@ -13,7 +13,7 @@ public class PorteException extends Exception {
 	private static final long serialVersionUID = 1L;
 
 	public PorteException() {
-		super("ProblÃ¨me de porte");
+		super("Problème de porte");
 	}
 
 	public PorteException(String raison) {

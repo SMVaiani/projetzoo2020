@@ -66,7 +66,7 @@ public abstract class Animal implements Individu {
 		return age;
 	}
 
-	private void setAge(int age) {
+	public void setAge(int age) {
 		this.age = age;
 	}
 
@@ -74,7 +74,7 @@ public abstract class Animal implements Individu {
 		return poids;
 	}
 
-	protected void setPoids(double p) {
+	public void setPoids(double p) {
 		if ((p > 0) && (p < LIMITE) )
 		{
 			poids = p;
