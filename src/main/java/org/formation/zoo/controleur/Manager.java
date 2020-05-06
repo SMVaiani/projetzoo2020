@@ -60,8 +60,7 @@ public final class Manager {
 	 * Méthode privée qui charge le modèle.
 	 * Pour l'instant elle instancie les animaux
 	 */
-	private void init()
-	{
+	private void init() {
 		List<CagePOJO> tmp = null;
 		tmp = acces.lireTous();
 		lesCages = new ArrayList<CageManagee>();
@@ -73,8 +72,7 @@ public final class Manager {
 	/**
 	 * nourris tous les animaux du zoo
 	 */
-	public void nourrir ()
-	{
+	public void nourrir () {
 		for (CageManagee cageManagee : lesCages) {
 			cageManagee.nourrir();
 		}
@@ -85,9 +83,19 @@ public final class Manager {
 	 * @param mange indice de la cage de la proie
 	 * @return le texte sur ce qu'il s'est passé
 	 */
-	public String devorer(int mangeur, int mange)
-	{	
+	public String devorer(int mangeur, int mange) {	
 		return lesCages.get(mangeur).devorer(lesCages.get(mange));
+	}
+	
+	public String supprimer(String nom) {
+		String s = "Cet animal n'existe pas";
+		for(CageManagee cm : lesCages) {
+			if(cm.getVue().getNom() != null && cm.getVue().getNom().equals(nom)) {
+				s = cm.supprimer();
+			}
+		}
+		
+		return s;
 	}
 	
 	/*public void fermer() {

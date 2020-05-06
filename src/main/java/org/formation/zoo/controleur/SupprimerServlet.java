@@ -9,17 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /** 
- * Servlet implementation class DevorerServlet
+ * Servlet implementation class SupprimerServlet
  */
-@WebServlet("/devorer")
-public class DevorerServlet extends HttpServlet {
+@WebServlet("/supprimer")
+public class SupprimerServlet extends HttpServlet {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public DevorerServlet() {
+	public SupprimerServlet() {
 		super();
 	}
 
@@ -31,11 +31,10 @@ public class DevorerServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String msg = "";
-		if(req.getParameter("mangeur") != null && req.getParameter("mange") != null)
+		if(req.getParameter("nomAnimal") != null)
 		{
-			String mangeur = req.getParameter("mangeur");
-			String mange = req.getParameter("mange");
-			msg = Manager.getInstance().devorer(Integer.parseInt(mangeur), Integer.parseInt(mange));
+			String nomAnimal = req.getParameter("nomAnimal");
+			msg = Manager.getInstance().supprimer(nomAnimal);
 		}
 		req.getSession(false).setAttribute("etat", msg);
 		resp.sendRedirect("/projetzoo2020");

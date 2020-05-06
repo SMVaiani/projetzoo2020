@@ -13,13 +13,16 @@
 <img class="logoGauche" alt="" src="images/logo.png"/>
 <img class="logoDroit" alt="" src="images/logo.png"/><p>Le zoo en folie</p>
 </header>
-<form name="fzoo" action="devorer" method="GET">
+<form id="forme" name="fzoo" action="devorer" method="GET">
 <nav>
 <ul class="m">
 	<li class="m"><a href="manger">TOUT le monde mange (defaut)</a></li>
 	<li class="m"><a href="#" onClick="fzoo.submit();">FAIRE manger les animaux selectionnes</a></li>
 	<li class="m"><a href="#">Ajouter un animal</a></li>
-	<li class="m"><a href="#">Supprimer un animal</a></li>
+	<li class="m">
+		<input type="text" name="nomAnimal">
+		<button id="btn_suppr">Supprimer un animal</button>
+	</li>
 </ul>
 </nav>
 <article>
@@ -57,5 +60,13 @@ if(session.getAttribute("etat") != null)
 %>
 </footer>
 </form>
+<script type="text/javascript">
+	var btn = document.getElementById('btn_suppr');
+	btn.addEventListener('click', function(e) {
+		e.preventDefault(); // annule l'action normale de submit
+		document.getElementById('forme').setAttribute("action", "supprimer");
+		document.forms["fzoo"].submit();
+	});
+</script>
 </body>
 </html>

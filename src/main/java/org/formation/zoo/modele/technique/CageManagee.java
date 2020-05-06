@@ -33,7 +33,7 @@ public final class CageManagee {
 	 * @throws PorteException si la cage est fermée
 	 * @throws CagePleineException si la cage est dèjà occupée
 	 */
-	public void entrer(Animal a) throws PorteException, CagePleineException{
+	public void entrer(Animal a) throws PorteException, CagePleineException {
 			controleur.entrer(a);
 			if(controleur.getOccupant() != null) {
 				vue.setNom(controleur.getOccupant().getNom());
@@ -53,8 +53,7 @@ public final class CageManagee {
 	 * Si la cage est vide retourne null
 	 * @throws PorteException si la cage n'est pas ouverte
 	 */
-	public Animal sortir()throws PorteException
-	{
+	public Animal sortir()throws PorteException {
 		Animal a = controleur.sortir();
 		if(controleur.getOccupant() == null) {
 			vue.setCodeAnimal(null);
@@ -80,8 +79,7 @@ public final class CageManagee {
 	 * @param mange adresse de la proie
 	 * @return le texte sur ce qu'il s'est passée
 	 */
-	public String devorer(CageManagee mange)
-	{
+	public String devorer(CageManagee mange) {
 		Mangeable laBeteConvoitee = null;
 		String s = "INCOMPATIBLE";
 		if (mange.getOccupant() != null && this.getOccupant() != null && mange.getOccupant() instanceof Mangeable)
@@ -94,7 +92,7 @@ public final class CageManagee {
 			}
 			
 			s = controleur.devorer(laBeteConvoitee);
-			if(s == "Je n'aime pas sa")
+			if(s.equals("Je n'aime pas sa"))
 			{
 				try {
 					mange.entrer((Animal)laBeteConvoitee);
@@ -115,6 +113,21 @@ public final class CageManagee {
 		
 		return s;
 	}
+	public String supprimer() {
+		String s = "Bye Bye";
+		if(getOccupant() != null)
+		{
+			ouvrir();
+			try {
+				sortir();
+			} catch (PorteException e) {
+				s = e.getMessage();
+			}
+			fermer();
+		}
+		
+		return s;
+	}
 	/**
 	 * 
 	 * @return l'animal occupant la cage
@@ -125,15 +138,13 @@ public final class CageManagee {
 	/**
 	 * permet l'ouverture de la cage
 	 */
-	public void ouvrir()
-	{
+	public void ouvrir() {
 		controleur.ouvrir();
 	}
 	/**
 	 * permet la fermeture de la cage
 	 */
-	public void fermer()
-	{
+	public void fermer() {
 		controleur.fermer();
 	}
 	

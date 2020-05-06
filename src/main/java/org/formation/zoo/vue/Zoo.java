@@ -55,6 +55,10 @@ public final class Zoo {
 		System.out.println( Manager.getInstance().devorer(mangeur, mange));
 	}
 	
+	public void supprimer(String nom) {
+		System.out.println(Manager.getInstance().supprimer(nom));
+	}
+	
 	/*public void fermer() {
 		Manager.getInstance().fermer();
 	}*/
@@ -69,6 +73,9 @@ public final class Zoo {
 		z.afficher();
 		System.out.println("on fait dévorer un animal");
 		z.devorer(1, 2);
+		z.afficher();
+		System.out.println("on supprime un animal");
+		z.supprimer("Beep Beep");
 		z.afficher();
 		System.out.println("on ferme le zoo");
 	}
