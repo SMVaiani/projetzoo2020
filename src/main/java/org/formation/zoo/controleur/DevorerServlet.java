@@ -30,10 +30,17 @@ public class DevorerServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int mangeur = Integer.parseInt(req.getParameter("mangeur"));
-		int mange = Integer.parseInt(req.getParameter("mange"));
-		Manager.getInstance().devorer(mangeur, mange);
+		String msg = "";
+		String mangeur = "";
+		String mange = "";
+		if(req.getParameter("mangeur") != null && req.getParameter("mange") != null)
+		{
+			mangeur = req.getParameter("mangeur");
+			mange = req.getParameter("mange");
+			msg = Manager.getInstance().devorer(Integer.parseInt(mangeur), Integer.parseInt(mange));
+		}
 		//resp.getWriter().print("<h1>mangeur:"+mangeur+"   mange:"+mange+"</h1>");
+		req.getSession(false).setAttribute("etat", msg);
 		resp.sendRedirect("/projetzoo2020");
 	}
 

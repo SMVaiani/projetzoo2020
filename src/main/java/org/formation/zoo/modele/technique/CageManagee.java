@@ -27,6 +27,12 @@ public final class CageManagee {
 		vue = pojo;
 		controleur = Conversion.pojoToCage(pojo);
 	}
+	/**
+	 * 
+	 * @param a l'animal que l'on veut faire entrer
+	 * @throws PorteException si la cage est fermée
+	 * @throws CagePleineException si la cage est dèjà occupée
+	 */
 	public void entrer(Animal a) throws PorteException, CagePleineException{
 			controleur.entrer(a);
 			if(controleur.getOccupant() != null) {
@@ -41,7 +47,12 @@ public final class CageManagee {
 			//mettre à jour le pojo
 			//modifier le pojo
 	}
-	
+	/**
+	 * 
+	 * @return l'animal qui était dans la cage
+	 * Si la cage est vide retourne null
+	 * @throws PorteException si la cage n'est pas ouverte
+	 */
 	public Animal sortir()throws PorteException
 	{
 		Animal a = controleur.sortir();
@@ -64,6 +75,11 @@ public final class CageManagee {
 		//modele.modifier(vue)
 	}
 	
+	/**
+	 * 
+	 * @param mange adresse de la proie
+	 * @return le texte sur ce qu'il s'est passée
+	 */
 	public String devorer(CageManagee mange)
 	{
 		Mangeable laBeteConvoitee = null;
@@ -99,16 +115,23 @@ public final class CageManagee {
 		
 		return s;
 	}
-	
-	/**/
+	/**
+	 * 
+	 * @return l'animal occupant la cage
+	 */
 	public Animal getOccupant() {
 		return controleur.getOccupant();
 	}
-	
+	/**
+	 * permet l'ouverture de la cage
+	 */
 	public void ouvrir()
 	{
 		controleur.ouvrir();
 	}
+	/**
+	 * permet la fermeture de la cage
+	 */
 	public void fermer()
 	{
 		controleur.fermer();

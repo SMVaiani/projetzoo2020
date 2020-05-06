@@ -38,15 +38,23 @@ String texte = null;
 	texte = String.join("", "<div class=\"afficheAnimal\" >",zanimaux.get(i).getPancarte(),"</div>");
 	out.print(texte);
 	
-	texte = String.join("", "<div class=\"radio-mangeur\"><input type=\"radio\" value=\"",Integer.toString(i),"\" name=\"mangeur\"><label for=\"mangeur\">Mangeur</label></div>");
+	texte = String.join("", "<div class=\"radio-mangeur\"><input type=\"radio\" id=\"mangeur",Integer.toString(i),"\" value=\"",Integer.toString(i),"\" name=\"mangeur\"><label for=\"mangeur",Integer.toString(i),"\">Mangeur</label></div>");
 	out.print(texte);
-	texte = String.join("", "<div class=\"radio-mange\"><input type=\"radio\" value=\"",Integer.toString(i),"\" name=\"mange\"><label for=\"mange\">Mange</label></div></div>");
+	texte = String.join("", "<div class=\"radio-mange\"><input type=\"radio\" id=\"mange",Integer.toString(i),"\" value=\"",Integer.toString(i),"\" name=\"mange\"><label for=\"mange",Integer.toString(i),"\">Mange</label></div></div>");
 	out.print(texte);	
 }
 %>
 </article>
 <footer>
-Etat en temps reel...
+<span id="etat-txt">Etat en temps reel:</span>
+<% 
+if(session.getAttribute("etat") != null)
+{
+	//out.print(session.getAttribute("etat"));
+	out.print(session.getAttribute("etat"));
+	session.removeAttribute("etat");
+}
+%>
 </footer>
 </form>
 </body>

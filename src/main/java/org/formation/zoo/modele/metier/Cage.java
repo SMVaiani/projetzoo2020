@@ -133,7 +133,11 @@ public class Cage implements Serializable{
 			getOccupant().manger();
 		}
 	}
-	
+	/**
+	 * 
+	 * @param mange la proie
+	 * @return le texte sur ce qu'il s'est passée
+	 */
 	public String devorer(Mangeable mange)
 	{
 		String s = "";;

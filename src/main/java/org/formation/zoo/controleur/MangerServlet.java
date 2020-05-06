@@ -32,6 +32,7 @@ public class MangerServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Manager.getInstance().nourrir();
+		req.getSession(false).setAttribute("etat", "Les animaux ont bien été nourrient");
 		resp.sendRedirect("/projetzoo2020");
 	}
 	
