@@ -68,7 +68,7 @@ public final class Zoo {
 		z.nourrir();
 		z.afficher();
 		System.out.println("on fait dévorer un animal");
-		z.devorer(0, 1);
+		z.devorer(1, 2);
 		z.afficher();
 		System.out.println("on ferme le zoo");
 	}

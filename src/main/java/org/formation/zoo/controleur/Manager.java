@@ -86,35 +86,8 @@ public final class Manager {
 	 * @return le texte sur ce qu'il s'est passé
 	 */
 	public String devorer(int mangeur, int mange)
-	{
-		Mangeable laBeteConvoitee = null;
-		String s = "INCOMPATIBLE";
-		if (lesCages.get(mange).getOccupant() != null && lesCages.get(mangeur).getOccupant() != null && lesCages.get(mange).getOccupant() instanceof Mangeable)
-			{
-				lesCages.get(mange).ouvrir();
-				try {
-					laBeteConvoitee = (Mangeable)lesCages.get(mange).sortir();
-				} catch (PorteException e2) {
-					e2.printStackTrace();
-				}
-				try
-				{
-					s = lesCages.get(mangeur).getOccupant().manger(laBeteConvoitee);
-				}
-				catch (BeurkException e)
-				{
-					s = e.getMessage();
-					try {
-						lesCages.get(mange).entrer((Animal)laBeteConvoitee);
-					} catch (PorteException e1) {
-						e1.printStackTrace();
-					} catch (CagePleineException e1) {
-						e1.printStackTrace();
-					}
-					lesCages.get(mange).fermer();
-				}
-		}
-		return s;
+	{	
+		return lesCages.get(mangeur).devorer(lesCages.get(mange));
 	}
 	
 	/*public void fermer() {

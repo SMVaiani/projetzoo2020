@@ -65,7 +65,7 @@ public class AccesJPA<T> implements Dao<T>{
 	public void ajouter(T obj) {
 		if(obj != null)
 		{
-			em.getTransaction();
+			em.getTransaction().begin();;
 			em.persist(obj);
 			em.getTransaction().commit();
 		}

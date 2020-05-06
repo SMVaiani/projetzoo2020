@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /** 
  * Servlet implementation class DevorerServlet
  */
-@WebServlet("devorer")
+@WebServlet("/devorer")
 public class DevorerServlet extends HttpServlet {
 
 	/**
@@ -30,7 +30,10 @@ public class DevorerServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Manager.getInstance().devorer(0, 1);
+		int mangeur = Integer.parseInt(req.getParameter("mangeur"));
+		int mange = Integer.parseInt(req.getParameter("mange"));
+		Manager.getInstance().devorer(mangeur, mange);
+		//resp.getWriter().print("<h1>mangeur:"+mangeur+"   mange:"+mange+"</h1>");
 		resp.sendRedirect("/projetzoo2020");
 	}
 

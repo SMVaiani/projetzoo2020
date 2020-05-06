@@ -38,9 +38,9 @@ String texte = null;
 	texte = String.join("", "<div class=\"afficheAnimal\" >",zanimaux.get(i).getPancarte(),"</div>");
 	out.print(texte);
 	
-	texte = String.join("", "<div class=\"radio-mangeur\"><input type=\"radio\" value=\"value1\" name=\"group1\"><label for=\"mangeur\">Mangeur</label></div>");
+	texte = String.join("", "<div class=\"radio-mangeur\"><input type=\"radio\" value=\"",Integer.toString(i),"\" name=\"mangeur\"><label for=\"mangeur\">Mangeur</label></div>");
 	out.print(texte);
-	texte = String.join("", "<div class=\"radio-mange\"><input type=\"radio\" value=\"value2\" name=\"group2\"><label for=\"mange\">Mange</label></div></div>");
+	texte = String.join("", "<div class=\"radio-mange\"><input type=\"radio\" value=\"",Integer.toString(i),"\" name=\"mange\"><label for=\"mange\">Mange</label></div></div>");
 	out.print(texte);	
 }
 %>
