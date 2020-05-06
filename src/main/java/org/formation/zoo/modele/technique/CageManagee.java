@@ -46,6 +46,15 @@ public final class CageManagee {
 				vue.setX(controleur.getX());
 				vue.setY(controleur.getY());
 				modele.ajouter(vue);
+				
+				if(controleur.getOccupant() instanceof Gazelle)
+				{
+					GazellePOJO gazPOJO = new GazellePOJO();
+					gazPOJO.setIdAnimal(vue.getCle());
+					gazPOJO.setLgCornes(((Gazelle) controleur.getOccupant()).getLgCornes());
+					Dao<GazellePOJO> modeleGaz = DaoFactory.getInstance().getDaoGaz();
+					modeleGaz.ajouter(gazPOJO);
+				}
 			}
 			//mettre à jour le pojo
 			//modifier le pojo
@@ -71,7 +80,6 @@ public final class CageManagee {
 			if(a instanceof Gazelle)
 			{
 				Dao<GazellePOJO> modeleGaz = DaoFactory.getInstance().getDaoGaz();
-				System.out.println("ici: " + gazPOJO.getId());
 				modeleGaz.effacer(gazPOJO);
 			}
 		}

@@ -116,4 +116,18 @@ img.animal {width:50px;height:50px}
 	color: red;
 	text-decoration: underline;
 }
+table,
+td {
+    border: 1px solid #333;
+}
+
+thead,
+tfoot {
+    background-color: #333;
+    color: #fff;
+}
+#btn_creer{
+	background-color: white;
+	color: red;
+}
 

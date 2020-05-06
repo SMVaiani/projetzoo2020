@@ -20,7 +20,7 @@
 	<li class="m"><a href="#" onClick="fzoo.submit();">FAIRE manger les animaux selectionnes</a></li>
 	<li class="m"><a href="#">Ajouter un animal</a></li>
 	<li class="m">
-		<input type="text" name="nomAnimal" placeholder="votre choix">
+		<input type="text" name="nomAnimal" placeholder="nom de l'animal">
 		<button id="btn_suppr">Supprimer un animal</button>
 	</li>
 </ul>
@@ -48,8 +48,53 @@ String texte = null;
 }
 %>
 </article>
+</form>
+
+<form id="forme" name="fzoo_creer" action="creer" method="GET">
+<table>
+    <thead>
+        <tr>
+            <th colspan="2">Ajouter animal</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>type d'animal</td>
+            <td><input type="text" name="typeAnimal"></td>
+        </tr>
+        <tr>
+            <td>nom</td>
+            <td><input type="text" name="nom"></td>
+        </tr>
+		<tr>
+            <td>age</td>
+            <td><input type="text" name="age"></td>
+        </tr>
+		<tr>
+            <td>poids</td>
+            <td><input type="text" name="poids" placeholder="double ou entier"></td>
+        </tr>
+        <tr>
+            <td>longueur cornes</td>
+            <td><input type="text" name="corne" placeholder="entier"></td>
+        </tr>
+		<tr>
+            <td>Cage X</td>
+            <td><input type="text" name="cageX" placeholder="entier"></td>
+        </tr>
+        <tr>
+            <td>Cage Y</td>
+            <td><input type="text" name="cageY" placeholder="entier"></td>
+        </tr>
+        <tr>
+        	<td><button id="btn_creer" onClick="fzoo_creer.submit();">creer</button></td>
+    </tbody>
+</table>
+</form>
+
 <footer>
-<span id="etat-txt">Etat en temps reel:</span>
+Etat en temps reel:
+<span id="etat-txt">
 <% 
 if(session.getAttribute("etat") != null)
 {
@@ -58,8 +103,8 @@ if(session.getAttribute("etat") != null)
 	session.removeAttribute("etat");
 }
 %>
+</span>
 </footer>
-</form>
 <script type="text/javascript">
 	var btn = document.getElementById('btn_suppr');
 	btn.addEventListener('click', function(e) {

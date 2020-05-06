@@ -7,6 +7,7 @@ import java.util.Vector;
 
 import org.formation.zoo.modele.metier.Animal;
 import org.formation.zoo.modele.metier.Cage;
+import org.formation.zoo.modele.metier.Gazelle;
 import org.formation.zoo.modele.metier.Mangeable;
 import org.formation.zoo.modele.technique.BeurkException;
 import org.formation.zoo.modele.technique.CageManagee;
@@ -88,7 +89,7 @@ public final class Manager {
 		return lesCages.get(mangeur).devorer(lesCages.get(mange));
 	}
 	
-	public String ajouter(String codeAnimal, String nom, int age, double poids, int x, int y) {
+	public String ajouter(String codeAnimal, String nom, int age, double poids, int x, int y, int lgCornes) {
 		String s = "";
 		for(CageManagee cm : lesCages) {
 			if(cm.getVue().getX() == x && cm.getVue().getY() == y)
@@ -102,6 +103,8 @@ public final class Manager {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				if(animal instanceof Gazelle)
+					((Gazelle) animal).setLgCornes(lgCornes);
 				animal.setNom(nom);
 				animal.setAge(age);
 				animal.setPoids(poids);

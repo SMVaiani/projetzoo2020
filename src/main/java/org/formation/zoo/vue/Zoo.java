@@ -52,8 +52,8 @@ public final class Zoo {
 		System.out.println( Manager.getInstance().devorer(mangeur, mange));
 	}
 	
-	public void ajouter(String codeAnimal, String nom, int age, double poids, int x, int y) {
-		System.out.println(Manager.getInstance().ajouter(codeAnimal, nom, age, poids, x, y));
+	public void ajouter(String codeAnimal, String nom, int age, double poids, int x, int y, int lgCornes) {
+		System.out.println(Manager.getInstance().ajouter(codeAnimal, nom, age, poids, x, y, lgCornes));
 	}
 	/**
 	 * 
@@ -76,17 +76,17 @@ public final class Zoo {
 		z.nourrir();
 		z.afficher();*/
 		
-		System.out.println("on fait dévorer un animal");
-		z.devorer(0, 4);
+	/*	System.out.println("on fait dévorer un animal");
+		z.devorer(0, 1);
+		z.afficher();*/
+		
+	/*	System.out.println("on ajoute un animal");
+		z.ajouter("Gazelle", "Fetia", 7, 120, 300, 300, 12);
+		z.afficher();*/
+		
+		System.out.println("on supprime un animal");
+		z.supprimer("Fetia");
 		z.afficher();
-		
-		/*System.out.println("on ajoute un animal");
-		z.ajouter("Lion", "Fetia", 7, 150, 700, 230);
-		z.afficher();*/
-		
-		/*System.out.println("on supprime un animal");
-		z.supprimer("Beep Beep");
-		z.afficher();*/
 		
 		System.out.println("on ferme le zoo");
 	}
