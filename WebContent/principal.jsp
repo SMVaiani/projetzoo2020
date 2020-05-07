@@ -60,31 +60,31 @@ String texte = null;
     <tbody>
         <tr>
             <td>type d'animal</td>
-            <td><input type="text" name="typeAnimal"></td>
+            <td><input type="text" name="typeAnimal" required="required" placeholder="?	  %%%%	 "></td>
         </tr>
         <tr>
             <td>nom</td>
-            <td><input type="text" name="nom"></td>
+            <td><input type="text" name="nom" required="required" placeholder="?	  !!!! "></td>
         </tr>
 		<tr>
             <td>age</td>
-            <td><input type="text" name="age"></td>
+            <td><input type="number" name="age" required="required" placeholder="?	  ииииии "></td>
         </tr>
 		<tr>
             <td>poids</td>
-            <td><input type="text" name="poids" placeholder="double ou entier"></td>
+            <td><input type="number" name="poids" required="required" placeholder=" votre choix "></td>
         </tr>
         <tr>
             <td>longueur cornes</td>
-            <td><input type="text" name="corne" placeholder="entier"></td>
+            <td><input type="number" name="corne" required="required" placeholder="?	    ......."></td>
         </tr>
 		<tr>
             <td>Cage X</td>
-            <td><input type="text" name="cageX" placeholder="entier"></td>
+            <td><input type="number" name="cageX" required="required" placeholder="?	  -------- "></td>
         </tr>
         <tr>
             <td>Cage Y</td>
-            <td><input type="text" name="cageY" placeholder="entier"></td>
+            <td><input type="number" name="cageY" required="required" placeholder="?	  @@@ "></td>
         </tr>
         <tr>
         	<td><button id="btn_creer" onClick="fzoo_creer.submit();">creer</button></td>
