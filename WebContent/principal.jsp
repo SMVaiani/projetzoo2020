@@ -107,7 +107,7 @@ if(session.getAttribute("etat") != null)
 </span>
 </footer>
 <script type="text/javascript">
-	var btn = document.getElementById('btn_suppr');
+	const btn = document.getElementById('btn_suppr');
 	btn.addEventListener('click', function(e) {
 		e.preventDefault(); // annule l'action normale de submit
 		document.getElementById('forme').setAttribute("action", "supprimer");
