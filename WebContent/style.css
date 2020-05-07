@@ -132,5 +132,20 @@ tfoot {
 #btn_creer{
 	background-color: white;
 	color: red;
+	cursor: pointer;
+}
+#btn_creer:hover{
+	background: blue;
+	color: white;
+}
+#btn_suppr{
+	cursor: pointer;
+}
+#btn_suppr:hover{
+	background: blue;
+	color: white;
+}
+td {
+	font-weight: 600;
 }
 
