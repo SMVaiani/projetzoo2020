@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import org.formation.zoo.service.CagePOJO;
+import org.formation.zoo.service.GazellePOJO;
 
 
 public class AccesJPA<T> implements Dao<T>{
@@ -65,13 +66,13 @@ public class AccesJPA<T> implements Dao<T>{
 			}
 			em.remove(obj);
 			em.getTransaction().commit();
-			em.close();
+			//em.close();
 		}
 	}
 
 	public void ajouter(T obj) {
 		if(obj != null)
-		{
+		{	
 			em.getTransaction().begin();
 			em.persist(obj);
 			em.getTransaction().commit();

@@ -95,11 +95,17 @@ public class Cage implements Serializable{
 	{
 		setOuvert(false);
 	}
-
+	/**
+	 * 
+	 * @return l'occupant de la cage
+	 */
 	public Animal getOccupant() {
 		return occupant;
 	}
-
+	/**
+	 * 
+	 * @param occupant le nouvel occupant
+	 */
 	public void setOccupant(Animal occupant) {
 		this.occupant = occupant;
 	}
@@ -119,11 +125,17 @@ public class Cage implements Serializable{
 	public void setY(int y) {
 		this.y = y;
 	}
-
+	/**
+	 * 
+	 * @return l'état de la cage (Ouvert ou Fermée)
+	 */
 	public boolean isOuvert() {
 		return ouvert;
 	}
-
+	/**
+	 * 
+	 * @param ouvert modifie l'état de la cage (Ouvert ou Fermée)
+	 */
 	public void setOuvert(boolean ouvert) {
 		this.ouvert = ouvert;
 	}
@@ -137,16 +149,13 @@ public class Cage implements Serializable{
 	 * 
 	 * @param mange la proie
 	 * @return le texte sur ce qu'il s'est passée
+	 * @throws BeurkException 
 	 */
-	public String devorer(Mangeable mange)
-	{
-		String s = "";;
-		try {
-			s = getOccupant().manger(mange);
-		} catch (BeurkException e) {
-			s = e.getMessage();
-		}
-		return s;
+	public String devorer(Mangeable mange) throws BeurkException {
+		if(getOccupant() != null)
+			return getOccupant().manger(mange);
+		
+		return null;
 	}
 	
 	@Override

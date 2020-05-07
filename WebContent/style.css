@@ -34,7 +34,10 @@ nav li{
 }
 
 table{
-	width: 100%;
+	width: 300px;
+	position: absolute;
+	right: 30px;
+	top: 180px;
 }
 table, th, td{
 	border: solid 1px #8b8b8b;
@@ -114,7 +117,7 @@ img.animal {width:50px;height:50px}
 }
 #etat-txt{
 	color: red;
-	text-decoration: underline;
+	font-weight: bold;
 }
 table,
 td {

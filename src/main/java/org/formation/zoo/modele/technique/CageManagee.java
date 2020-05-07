@@ -1,5 +1,8 @@
 package org.formation.zoo.modele.technique;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.formation.zoo.modele.metier.Animal;
 import org.formation.zoo.modele.metier.Cage;
 import org.formation.zoo.modele.metier.Gazelle;
@@ -24,9 +27,11 @@ public final class CageManagee {
 	 */
 	private CagePOJO vue;
 	private Dao<CagePOJO> modele;
+	private Dao<GazellePOJO> modeleGaz;
 	
-	public CageManagee(CagePOJO pojo, Dao<CagePOJO> dao) {
+	public CageManagee(CagePOJO pojo, Dao<CagePOJO> dao, Dao<GazellePOJO> daoGaz) {
 		modele = dao;
+		modeleGaz = daoGaz;
 		vue = pojo;
 		controleur = Conversion.pojoToCage(pojo);
 	}
@@ -38,24 +43,6 @@ public final class CageManagee {
 	 */
 	public void entrer(Animal a) throws PorteException, CagePleineException {
 			controleur.entrer(a);
-			if(controleur.getOccupant() != null) {
-				vue.setNom(controleur.getOccupant().getNom());
-				vue.setAge(controleur.getOccupant().getAge());
-				vue.setPoids(controleur.getOccupant().getPoids());
-				vue.setCodeAnimal(controleur.getOccupant().getClass().getSimpleName());
-				vue.setX(controleur.getX());
-				vue.setY(controleur.getY());
-				modele.ajouter(vue);
-				
-				if(controleur.getOccupant() instanceof Gazelle)
-				{
-					GazellePOJO gazPOJO = new GazellePOJO();
-					gazPOJO.setIdAnimal(vue.getCle());
-					gazPOJO.setLgCornes(((Gazelle) controleur.getOccupant()).getLgCornes());
-					Dao<GazellePOJO> modeleGaz = DaoFactory.getInstance().getDaoGaz();
-					modeleGaz.ajouter(gazPOJO);
-				}
-			}
 			//mettre à jour le pojo
 			//modifier le pojo
 	}
@@ -66,23 +53,8 @@ public final class CageManagee {
 	 * @throws PorteException si la cage n'est pas ouverte
 	 */
 	public Animal sortir()throws PorteException {
-		Animal a = controleur.sortir();
+		Animal a = this.controleur.sortir();
 
-		if(controleur.getOccupant() == null) {
-			vue.setCodeAnimal(null);
-			vue.setNom(null);
-			vue.setAge(0);
-			vue.setPoids(0);
-			GazellePOJO gazPOJO = vue.getGaz();
-			vue.setGaz(null);
-			modele.modifier(vue.getCle(), vue);
-			
-			if(a instanceof Gazelle)
-			{
-				Dao<GazellePOJO> modeleGaz = DaoFactory.getInstance().getDaoGaz();
-				modeleGaz.effacer(gazPOJO);
-			}
-		}
 		return a;
 	}
 	
@@ -97,13 +69,13 @@ public final class CageManagee {
 	
 	/**
 	 * 
-	 * @param mange adresse de la proie
+	 * @param mange la proie
 	 * @return le texte sur ce qu'il s'est passée
 	 */
 	public String devorer(CageManagee mange) {
 		Mangeable laBeteConvoitee = null;
 		String s = "INCOMPATIBLE";
-		if (mange.getOccupant() != null && this.getOccupant() != null && mange.getOccupant() instanceof Mangeable)
+		if (mange.getOccupant() != null && this.getOccupant() != mange.getOccupant() && mange.getOccupant() instanceof Mangeable)
 		{
 			mange.ouvrir();
 			try {
@@ -112,36 +84,60 @@ public final class CageManagee {
 				s = e2.getMessage();
 			}
 			
-			s = controleur.devorer(laBeteConvoitee);
-			if(s.equals("Je n'aime pas sa"))
-			{
+			try {
+				s = controleur.devorer(laBeteConvoitee);
+				vue.setPoids(controleur.getOccupant().getPoids());
+				modele.modifier(vue.getCle(), vue);
+				modeleGaz.effacer(mange.vue.getGaz());
+				mange.vue.setCodeAnimal(null);
+				mange.vue.setNom(null);
+				mange.vue.setAge(0);
+				mange.vue.setPoids(0);
+				mange.vue.setGaz(null);
+				mange.modele.modifier(mange.vue.getCle(), mange.vue);
+			} catch (BeurkException e1) {
+				// TODO Auto-generated catch block
+				s = e1.getMessage();
 				try {
 					mange.entrer((Animal)laBeteConvoitee);
 				} catch (PorteException | CagePleineException e) {
 					// TODO Auto-generated catch block
 					s = e.getMessage();
 				}
-			}
-			
-			mange.fermer();
-			
-			if(s.equals("MIAM"))
-			{
-				vue.setPoids(controleur.getOccupant().getPoids());
-				modele.modifier(vue.getCle(), vue);
+				mange.fermer();
 			}
 		}
 		
 		return s;
 	}
-	
+	/**
+	 * 
+	 * @param a l'animal a faire entrer
+	 * @return le texte sur ce qu'il s'est passée
+	 */
 	public String ajouter(Animal a) {
-		String s = "Animal ajouter avec succès";
-		try {
-			entrer(a);
-		} catch (PorteException | CagePleineException e) {
-			// TODO Auto-generated catch block
-			s = e.getMessage();
+		String s = "Cage pleine";
+		if(getOccupant() == null) {
+			s = "Animal ajouter avec succès";
+			try {
+				entrer(a);
+				fermer();
+			} catch (PorteException | CagePleineException e) {
+				// TODO Auto-generated catch block
+				s = e.getMessage();
+			}
+			if(a instanceof Gazelle) 
+			{
+				GazellePOJO gazellePOJO = new GazellePOJO();
+				gazellePOJO.setIdAnimal(vue.getCle());
+				gazellePOJO.setLgCornes(((Gazelle)a).getLgCornes());
+				vue.setGaz(gazellePOJO);
+			}
+			vue.setCodeAnimal(controleur.getOccupant().getClass().getSimpleName());
+			vue.setNom(controleur.getOccupant().getNom());
+			vue.setAge(controleur.getOccupant().getAge());
+			vue.setPoids(controleur.getOccupant().getPoids());
+			modele.modifier(vue.getCle(), vue);
 		}
 		
 		return s;
@@ -151,12 +147,21 @@ public final class CageManagee {
 	 * @return le texte sur ce qu'il s'est passée
 	 */
 	public String supprimer() {
-		String s = "Bye Bye";
+		String s = "Cage vide";
 		if(getOccupant() != null)
 		{
+			s = "Bye Bye l'animal";
 			ouvrir();
 			try {
 				sortir();
+				modeleGaz.effacer(vue.getGaz());
+				vue.setCodeAnimal(null);
+				vue.setNom(null);
+				vue.setAge(0);
+				vue.setPoids(0);
+				vue.setGaz(null);
+				modele.modifier(vue.getCle(), vue);
+				
 			} catch (PorteException e) {
 				s = e.getMessage();
 			}

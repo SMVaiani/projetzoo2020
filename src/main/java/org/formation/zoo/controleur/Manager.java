@@ -14,6 +14,7 @@ import org.formation.zoo.modele.technique.CageManagee;
 import org.formation.zoo.modele.technique.CagePleineException;
 import org.formation.zoo.modele.technique.PorteException;
 import org.formation.zoo.service.CagePOJO;
+import org.formation.zoo.service.GazellePOJO;
 import org.formation.zoo.stockage.Dao;
 import org.formation.zoo.stockage.DaoFactory;
 import org.formation.zoo.stockage.FichierAccess;
@@ -35,6 +36,7 @@ public final class Manager {
 	 * instance du dao choisi
 	 */
 	private Dao<CagePOJO> acces;
+	private Dao<GazellePOJO> daoGaz;
 	/**
 	 * pour SINGLETON et une FACADE
 	 */
@@ -46,6 +48,7 @@ public final class Manager {
 	private Manager() {
 		lesCages = null;
 		acces = DaoFactory.getInstance().getDao();
+		daoGaz = DaoFactory.getInstance().getDaoGaz();
 		init();
 	}
 	/**
@@ -67,7 +70,7 @@ public final class Manager {
 		tmp = acces.lireTous();
 		lesCages = new ArrayList<CageManagee>();
 		for(CagePOJO cagePOJO : tmp) {
-			lesCages.add(new CageManagee(cagePOJO, acces));
+			lesCages.add(new CageManagee(cagePOJO, acces, daoGaz));
 		}
 	}
 	
@@ -89,6 +92,17 @@ public final class Manager {
 		return lesCages.get(mangeur).devorer(lesCages.get(mange));
 	}
 	
+	/**
+	 * 
+	 * @param codeAnimal type de l'animal
+	 * @param nom nom de l'animal
+	 * @param age age de l'animal
+	 * @param poids poids de l'animal
+	 * @param x positon x de la cage
+	 * @param y position y de la cage
+	 * @param lgCornes longueur de la cornes
+	 * @return le texte sur ce qu'il s'est passée
+	 */
 	public String ajouter(String codeAnimal, String nom, int age, double poids, int x, int y, int lgCornes) {
 		String s = "";
 		for(CageManagee cm : lesCages) {

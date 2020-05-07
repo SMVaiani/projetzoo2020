@@ -50,7 +50,7 @@ String texte = null;
 </article>
 </form>
 
-<form id="forme" name="fzoo_creer" action="creer" method="GET">
+<form name="fzoo_creer" action="creer" method="GET">
 <table>
     <thead>
         <tr>
@@ -88,6 +88,7 @@ String texte = null;
         </tr>
         <tr>
         	<td><button id="btn_creer" onClick="fzoo_creer.submit();">creer</button></td>
+        </tr>
     </tbody>
 </table>
 </form>

@@ -71,21 +71,21 @@ public final class Zoo {
 		Zoo z = null;
 		z = new Zoo();
 					
-	/*	z.afficher(); 
+		z.afficher(); 
 		System.out.println("on fait manger tous les animaux");
 		z.nourrir();
-		z.afficher();*/
+		z.afficher();
 		
-	/*	System.out.println("on fait dévorer un animal");
-		z.devorer(0, 1);
-		z.afficher();*/
+		System.out.println("on fait dévorer un animal");
+		z.devorer(0, 3);
+		z.afficher();
 		
-	/*	System.out.println("on ajoute un animal");
-		z.ajouter("Gazelle", "Fetia", 7, 120, 300, 300, 12);
-		z.afficher();*/
+		System.out.println("on ajoute un animal");
+		z.ajouter("Lion", "Totara", 11, 140, 400, 400, 0);
+		z.afficher();
 		
 		System.out.println("on supprime un animal");
-		z.supprimer("Fetia");
+		z.supprimer("GAGAG");
 		z.afficher();
 		
 		System.out.println("on ferme le zoo");
