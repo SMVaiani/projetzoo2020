@@ -107,7 +107,7 @@
 			const btn = document.getElementById('btn_suppr');
 			btn.addEventListener('click', function(e) {
 			e.preventDefault(); // annule l'action normale de submit
-			document.getElementById('forme').setAttribute("action", "supprimer");
+			document.getElementById('forme').setAttribute("action", "#");
 			document.forms["fzoo"].submit();
 			});
 		</script>

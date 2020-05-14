@@ -153,8 +153,11 @@ public final class CageManagee {
 			s = "Bye Bye l'animal";
 			ouvrir();
 			try {
-				sortir();
-				modeleGaz.effacer(vue.getGaz());
+			//	sortir();
+				if(sortir() instanceof Gazelle)
+				{
+					modeleGaz.effacer(vue.getGaz());
+				}
 				vue.setCodeAnimal(null);
 				vue.setNom(null);
 				vue.setAge(0);
